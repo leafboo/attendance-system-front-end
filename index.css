@@ -1,0 +1,10 @@
+body {
+  background-color: #0E0A07;
+  font-family: "JetBrains Mono";
+  color: #F1EDE9;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url(./src/fonts/JetBrainsMonoNL-Regular.ttf);
+}
