@@ -1,7 +1,54 @@
+/* Header */
 .login-container {
   display: flex;
   align-items: center;
   margin-top: 8rem;
   flex-direction: column;
+}
+
+.login-container > span {
+  font-size: 4rem;
+  margin-bottom: 5rem;
+}
+
+
+
+/* Body */
+.box-grid {
+  width: 25rem;
+}
+
+.input-box {
+  margin-top: .5rem;
+  margin-left: 2rem;
+  width: 80%;
+  background-color: rgba(141, 88, 37, .16);
+  border: none;
+  color: #F1EDE9;
+  font-family: "JetBrains Mono";
+  font-size: 1.5rem;
+  padding: .5rem 1.4rem;
+}
+.input-box:focus {
+  outline: none;
+}
+
+.login-container > .box-grid > form > span {
+  font-size: 1.7rem;
+}
+
+
+
+/* Footer */
+.enter-button {
+  margin-top: 4rem;
+  border: none;
+  background-color: #DC8F41;
+  color: #0E0A07;
+  font-family: "JetBrains Mono";
+  font-size: 1.5rem;
+  padding: .5rem 1.2rem;
+  cursor: pointer;
+  margin-left: 17.9rem;
 }
 
