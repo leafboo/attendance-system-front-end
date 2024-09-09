@@ -1,5 +1,5 @@
-# Attendance Checking System (A.C.S)
-The front end code for the Attendance Checking System  to be used by DSC-LITES in checking student attendances during events and stuff
+# Attendance Management System (A.M.S)
+The front end code for the Attendance Management System to be used by DSC-LITES in checking student attendances during events and stuff
 # ✏️ Themes 
 - Gruvbox (idk...change name later)
   
