@@ -28,6 +28,7 @@
   font-family: "JetBrains Mono";
   font-size: 1.5rem;
   padding: .5rem 1.4rem;
+  border-radius: 2px;
 }
 .input-box:focus {
   outline: none;
@@ -50,5 +51,6 @@
   padding: .5rem 1.2rem;
   cursor: pointer;
   margin-left: 17.9rem;
+  border-radius: 2px;
 }
 

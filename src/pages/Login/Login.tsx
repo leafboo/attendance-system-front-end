@@ -1,6 +1,16 @@
+import React from "react";
 import LoginCSS from "./Login.module.css"
 
-export default function Login() {
+interface LoginProps {
+  setActiveComponent: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export default function Login(props: LoginProps) {
+
+  function changeComponent() {
+    props.setActiveComponent(1);
+  }
+
   return (
     <>
       <div className={LoginCSS['login-container']}>
@@ -14,7 +24,7 @@ export default function Login() {
             <input type="text" name="IdNumber" className={LoginCSS['input-box']} /> <br /> <br />
             <span>Password</span> <br />
             <input type="password" name="Password" className={LoginCSS['input-box']} /> <br />
-            <input type="submit" value="Enter" className={LoginCSS['enter-button']} />
+            <input type="submit" value="Enter" className={LoginCSS['enter-button']} onClick={changeComponent} />
           </form>
         </div>
         
