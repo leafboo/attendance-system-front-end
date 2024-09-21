@@ -1,5 +1,5 @@
-import Input from "./Input"
-import StudentData from "../../StudentData/StudentData"
+import Input from "../Input/Input"
+import StudentData from "../../../StudentData/StudentData"
 import StudentListCSS from './StudentList.module.css'
 
 

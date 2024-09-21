@@ -1,5 +1,5 @@
-import Header from '../PageComponents/Header';
-import StudentList from '../PageComponents/StudentList';
+import Header from '../PageComponents/Header/Header';
+import StudentList from '../PageComponents/StudentList/StudentList';
 
 interface AttendanceProps {
   setActiveComponent: React.Dispatch<React.SetStateAction<number>>;
