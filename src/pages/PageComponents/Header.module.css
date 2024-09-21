@@ -1,0 +1,30 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 2rem;
+  padding-left: 4rem;
+  padding-right: 4rem;
+  border: solid white;
+}
+
+.left-section {
+  border: solid white;
+  width: 37rem;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+.left-section > span {
+  font-size: 1.6rem;
+}
+
+.attendance, .list, .excel {
+  cursor: pointer;
+}
+
+
+.right-section {
+  border: solid white;
+}
+
