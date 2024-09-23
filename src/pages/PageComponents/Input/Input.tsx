@@ -4,7 +4,7 @@ export default function Input() {
   return (
     <>
       <div className={InputCSS['input-container']}>
-        <form action="" className={InputCSS['left-section']}>
+        <form onSubmit={() => event?.preventDefault()} action="Input.tsx" className={InputCSS['left-section']}>
           <input type="submit" value='Enter' className={InputCSS['enter-button']} />
           <input type="text" placeholder='Input Id no' className={InputCSS['input-box']} />
         </form>
