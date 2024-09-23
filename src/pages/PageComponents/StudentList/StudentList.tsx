@@ -17,41 +17,47 @@ export default function StudentList(props: StudentListProps) {
         <div className={StudentListCSS['body']}>
           <Input />
           <span className={StudentListCSS['table-container']}>
-            <div className={StudentListCSS['table']}>
-              <div className={StudentListCSS['column-names']}>
-                <span>Id No</span>
-                <span>Name</span>
-                <span>Program</span>
-                <span>Time in</span>
-              </div>
-              <div className={StudentListCSS['list']}>
-                <StudentData idNumber="1601369" 
-                             name="Eduardo Anthony B. Yalung" 
-                             program="BSIT-3"
-                             timeIn="8:00 AM" />
-                <StudentData idNumber="1702361" 
+            <table className={StudentListCSS['table']}>
+              <tr className={StudentListCSS['column-names']}>
+                <th>Id No</th>
+                <th>Name</th>
+                <th>Program</th>
+                <th>Time in</th>
+              </tr>
+
+              <StudentData idNumber="1601369" 
+                              name="Eduardo Anthony B. Yalung" 
+                              program="BSIT-3"
+                              timeIn="8:00 AM" />
+
+              <StudentData idNumber="1702361" 
                              name="Kareem Julian Q. Cayetano" 
                              program="BSCS-1"
                              timeIn="7:57 AM" />
+
                 <StudentData idNumber="1701232" 
                              name="Aureliano George L. Barrameda" 
                              program="BSCS-1"
                              timeIn="7:56 AM" />
+
                 <StudentData idNumber="1732461" 
                              name="Graciana A. Cantillo" 
                              program="BSCS-3"
                              timeIn="7:48 AM" />
+
                 <StudentData idNumber="1612361" 
                              name="Kristofer K. Infante" 
                              program="BSCS-2"
                              timeIn="7:45 AM" />
+
                 <StudentData idNumber="1748392" 
                              name="Brodie Derek E. Cervantes" 
                              program="BSCS-4"
                              timeIn="7:40 AM" />
-              </div>
+
+             
               
-          </div>
+          </table>
           </span>
           
           <button onClick={changeComponent} >Go to Login Page</button>

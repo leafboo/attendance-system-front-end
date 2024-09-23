@@ -1,0 +1,9 @@
+.student-data-row {
+  margin-top: .8rem;
+  background-color: rgba(141, 88, 37, .13);
+  font-size: 1.3rem;
+  display: flex;
+  justify-content: space-between;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+}

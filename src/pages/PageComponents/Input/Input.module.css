@@ -20,7 +20,9 @@
 
 
 .input-container > .left-section > .enter-button {
-  background-color: #F1EDE9;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  background-color: #DCBD9E;
   color: #0E0A07;
 }
 .input-container > .right-section {

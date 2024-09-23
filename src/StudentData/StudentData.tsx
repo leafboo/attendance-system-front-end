@@ -1,3 +1,5 @@
+import StudentDataCSS from './StudentData.module.css'
+
 interface StudentProps {
   idNumber: String,
   name: String,
@@ -7,11 +9,11 @@ interface StudentProps {
 
 export default function StudentData(props: StudentProps) {
   return (
-    <>
-      <span>{props.idNumber}</span>
-      <span>{props.name}</span>
-      <span>{props.program}</span>
-      <span>{props.timeIn}</span>
-    </>
+    <tr className={StudentDataCSS['student-data-row']}>
+      <td>{props.idNumber}</td>
+      <td>{props.name}</td>
+      <td>{props.program}</td>
+      <td>{props.timeIn}</td>
+    </tr>
   )
 }
