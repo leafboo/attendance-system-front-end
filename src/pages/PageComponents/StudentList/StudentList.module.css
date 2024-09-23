@@ -14,21 +14,27 @@
 
 /* table */
 .table-container {
+  padding-top: 1rem;
   display: flex;
   justify-content: center;
 }
 
 .table {
+  display: block;
   width: 90%;
-  border: solid white;
+  height: 25rem;
+  overflow-y: scroll;
+  padding-right: 1rem;
 }
 .table > .column-names {
-  padding-left: 4%;
-  padding-right: 4%;
+  padding: 1.2rem 4%;
   font-size: 1.5rem;
   display: flex;
+  background-color: #0E0A07;
   justify-content: space-between;
   font-weight: normal;
+  position: sticky;
+  top: 0;
 }
 
 

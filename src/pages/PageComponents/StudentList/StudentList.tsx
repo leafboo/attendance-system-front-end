@@ -55,6 +55,31 @@ export default function StudentList(props: StudentListProps) {
                              program="BSCS-4"
                              timeIn="7:40 AM" />
 
+                <StudentData idNumber="1232290" 
+                             name="Ellis D. Arellano" 
+                             program="BSCS-4"
+                             timeIn="7:39 AM" />
+
+                <StudentData idNumber="1938390" 
+                             name="Cynthia A. Apostol" 
+                             program="BSCS-4"
+                             timeIn="7:39 AM" />
+
+                 <StudentData idNumber="1038489" 
+                             name="Jiro B. Lozada" 
+                             program="BSIT-3"
+                             timeIn="7:36 AM" />
+
+                <StudentData idNumber="0182839" 
+                             name="Ash V. Rodriguez" 
+                             program="BSCS-1"
+                             timeIn="7:35 AM" />
+
+                <StudentData idNumber="1938390" 
+                             name="Princess A. Canlas" 
+                             program="BSCS-1"
+                             timeIn="7:35 AM" />
+
              
               
           </table>

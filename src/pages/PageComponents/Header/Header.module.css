@@ -28,6 +28,9 @@
 .attendance, .list, .excel {
   cursor: pointer;
 }
+.list, .excel {
+  color: rgba(241, 237, 233, .50);
+}
 
 
 .right-section {
