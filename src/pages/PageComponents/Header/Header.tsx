@@ -1,4 +1,5 @@
 import HeaderCSS from './Header.module.css'
+import settingsIcon from '../../../icons/settings-icon.png';
 
 export default function Header() {
   return (
@@ -12,7 +13,7 @@ export default function Header() {
           </div>
 
           <div className={HeaderCSS['right-section']}>
-            <img src="" alt="settings icon here" />
+            <img src={settingsIcon} alt="settings icon here" />
           </div> 
         </div>
       </div>

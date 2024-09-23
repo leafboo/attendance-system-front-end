@@ -6,7 +6,6 @@
   align-items : center;
 }
 .body-container > .body {
-  border: solid white;
   width: 60rem;
   height: 35rem;
 }

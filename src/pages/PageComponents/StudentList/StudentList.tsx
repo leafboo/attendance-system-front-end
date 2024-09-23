@@ -75,17 +75,15 @@ export default function StudentList(props: StudentListProps) {
                              program="BSCS-1"
                              timeIn="7:35 AM" />
 
-                <StudentData idNumber="1938390" 
+                <StudentData idNumber="1947389" 
                              name="Princess A. Canlas" 
                              program="BSCS-1"
                              timeIn="7:35 AM" />
 
-             
-              
           </table>
           </span>
           
-          <button onClick={changeComponent} >Go to Login Page</button>
+         
         </div>
       </span>
       

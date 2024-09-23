@@ -10,11 +10,10 @@
   padding-top: 2rem;
   padding-left: 4rem;
   padding-right: 4rem;
-  border: solid white;
+  margin-bottom: 2rem;
 }
 
 .left-section {
-  border: solid white;
   width: 37rem;
   display: flex;
   justify-content: space-between;
@@ -34,6 +33,6 @@
 
 
 .right-section {
-  border: solid white;
+  cursor: pointer;
 }
 
