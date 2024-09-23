@@ -1,5 +1,11 @@
+.header-container {
+  display: flex;
+  justify-content: center;
+}
+
 .header {
   display: flex;
+  width: 70rem;
   justify-content: space-between;
   padding-top: 2rem;
   padding-left: 4rem;
