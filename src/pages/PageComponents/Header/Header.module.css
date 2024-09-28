@@ -26,9 +26,14 @@
 
 .attendance, .list, .excel {
   cursor: pointer;
+  transition: opacity 0.15s;
 }
+.attendance:hover, .list:hover, .excel:hover {
+  opacity: 1;
+}
+
 .list, .excel {
-  color: rgba(241, 237, 233, .50);
+  opacity: .5;
 }
 
 

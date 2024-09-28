@@ -18,19 +18,22 @@ export default function StudentList(props: StudentListProps) {
           <Input />
           <span className={StudentListCSS['table-container']}>
             <table className={StudentListCSS['table']}>
-              <tr className={StudentListCSS['column-names']}>
-                <th>Id No</th>
-                <th>Name</th>
-                <th>Program</th>
-                <th>Time in</th>
-              </tr>
+              <thead>
+                <tr className={StudentListCSS['column-names']}>
+                  <th>Id No</th>
+                  <th>Name</th>
+                  <th>Program</th>
+                  <th>Time in</th>
+                </tr>
+              </thead>
 
-              <StudentData idNumber="1601369" 
-                              name="Eduardo Anthony B. Yalung" 
-                              program="BSIT-3"
-                              timeIn="8:00 AM" />
+              <tbody>
+                <StudentData idNumber="1601369" 
+                             name="Eduardo Anthony B. Yalung" 
+                             program="BSIT-3"
+                             timeIn="8:00 AM" />
 
-              <StudentData idNumber="1702361" 
+                <StudentData idNumber="1702361" 
                              name="Kareem Julian Q. Cayetano" 
                              program="BSCS-1"
                              timeIn="7:57 AM" />
@@ -79,6 +82,7 @@ export default function StudentList(props: StudentListProps) {
                              name="Princess A. Canlas" 
                              program="BSCS-1"
                              timeIn="7:35 AM" />
+              </tbody>
 
           </table>
           </span>

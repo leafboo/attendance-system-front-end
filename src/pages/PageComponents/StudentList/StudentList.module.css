@@ -13,28 +13,34 @@
 
 /* table */
 .table-container {
-  padding-top: 1rem;
+  margin-top: 2rem;
   display: flex;
   justify-content: center;
+  overflow-y: scroll;
+  height: 27rem;
 }
 
 .table {
-  display: block;
-  width: 90%;
-  height: 25rem;
-  overflow-y: scroll;
-  padding-right: 1rem;
+  display: table;
+  width: 50rem;
+  border: none;
+  border-spacing: 0rem 1rem;
 }
-.table > .column-names {
-  padding: 1.2rem 4%;
-  font-size: 1.5rem;
-  display: flex;
-  background-color: #0E0A07;
-  justify-content: space-between;
-  font-weight: normal;
+
+.table th {
   position: sticky;
-  top: 0;
 }
+
+.table td {
+  padding: 1rem 1.3rem;
+}
+
+.column-names {
+  font-size: 1.5rem;
+  background-color: #0E0A07;
+  font-weight: normal;
+}
+
 
 
 .body > button {

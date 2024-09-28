@@ -50,5 +50,10 @@
   cursor: pointer;
   margin-left: 17.9rem;
   border-radius: 2px;
+  transition: opacity 0.15s;
+}
+
+.enter-button:hover {
+  opacity: .7;
 }
 
