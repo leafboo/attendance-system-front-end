@@ -32,8 +32,12 @@
   opacity: 1;
 }
 
-.list, .excel {
+.attendance, .list, .excel {
   opacity: .5;
+}
+
+.active-page {
+  opacity: 1;
 }
 
 

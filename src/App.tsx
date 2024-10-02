@@ -13,9 +13,11 @@ export default function App() {
       { activeComponent === 0 ? (
           <Login setActiveComponent={setActiveComponent} />
         ) : activeComponent === 1 ? (
-          <Attendance setActiveComponent={setActiveComponent} />
+          <Attendance activeComponent={activeComponent} 
+                      setActiveComponent={setActiveComponent} />
         ) : activeComponent == 2 ? (
-          <List />
+          <List activeComponent={activeComponent}
+                setActiveComponent={setActiveComponent} />
         ) : (
           <SettingsPage />
         )
