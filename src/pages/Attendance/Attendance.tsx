@@ -8,8 +8,8 @@ interface AttendanceProps {
 export default function Attendance(props: AttendanceProps) {
   return (
     <>
-      <Header />
-      <StudentList setActiveComponent={props.setActiveComponent} />
+      <Header setActiveComponent={props.setActiveComponent} />
+      <StudentList />
     </>
   )
 }

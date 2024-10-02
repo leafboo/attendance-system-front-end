@@ -3,14 +3,10 @@ import StudentData from "../../../StudentData/StudentData"
 import StudentListCSS from './StudentList.module.css'
 
 
-interface StudentListProps {
-  setActiveComponent: React.Dispatch<React.SetStateAction<number>>;
-}
 
-export default function StudentList(props: StudentListProps) {
-  function changeComponent() {
-    props.setActiveComponent(0)
-  }
+
+export default function StudentList() {
+
   return (
     <>
       <span className={StudentListCSS['body-container']}>
