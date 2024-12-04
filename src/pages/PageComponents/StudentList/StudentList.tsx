@@ -24,11 +24,13 @@ export default function StudentList() {
  // <Student[]> states that the variable that has this attached will be an array of objects Student
   const [studentId, setStudentId] = React.useState<string[]>([])
   const [allStudentInfo, setAllStudentInfo] = React.useState([])
-  const [studentData, setSudentData] = React.useState<realStudentData>()
+  const [timeInStudentData, setTimeInStudentData] = React.useState<realStudentData>()
 
-  // Write a query that will get the data in the attendance endpoint
-  // Write a query that gets the data in the student endpoint using the student_id key from the data in the attendance endpoint 
-  // Put the data in the studentData useState
+  // const studentIds = only the student_ids in the attendance endpoint that has the time_status = 1 (time in)
+  // const allStudentData = all the data of student endpoint
+  // Filter using code the allStudentData that has the same student_id in studentIds 
+  // Put all filtered data in useState timeInStudentData
+  // Do the same for time out (worry about this later)
 
 
   React.useEffect(()=>{
