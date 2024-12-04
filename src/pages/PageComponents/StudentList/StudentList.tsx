@@ -1,11 +1,57 @@
+import React from "react"
 import Input from "../Input/Input"
 import StudentData from "../../../StudentData/StudentData"
 import StudentListCSS from './StudentList.module.css'
 
 
+type Student = {
+  id: 0,
+  time_status: 0,
+  date_time: '',
+  student_id: ''
+}
+
+type realStudentData = { // This will hold the data that will be printed out in the student lists
+  IdNumber: string,
+  Name: string,
+  Program: string,
+  TimeIn: number
+}
+
 
 
 export default function StudentList() {
+ // <Student[]> states that the variable that has this attached will be an array of objects Student
+  const [studentId, setStudentId] = React.useState<string[]>([])
+  const [allStudentInfo, setAllStudentInfo] = React.useState([])
+  const [studentData, setSudentData] = React.useState<realStudentData>()
+
+  // Write a query that will get the data in the attendance endpoint
+  // Write a query that gets the data in the student endpoint using the student_id key from the data in the attendance endpoint 
+  // Put the data in the studentData useState
+
+
+  React.useEffect(()=>{
+    async function getStudentId() {
+      const response = await fetch("https://lites-ams-api-main.vercel.app/attendance/get")
+      // Make the type of data an array of types Student
+      const data: Student[] = await response.json()
+      // Get the student ids in the array of objects
+      const student_ids = data.map((student) => student.student_id)
+      setStudentId(student_ids);
+    }
+
+    async function getStudentInfo() {
+
+    }
+
+    getStudentId()
+  }, [])
+
+  console.log(studentId)
+  
+  
+ 
 
   return (
     <>

@@ -9,7 +9,6 @@ export default function Input() {
     event.preventDefault()
     try {
       const response = await fetch('https://lites-ams-api-main.vercel.app/attendance/add', {
-        mode: 'no-cors',
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -31,6 +30,7 @@ export default function Input() {
   }
 
   const [inputValue, setInputValue] = React.useState<string>("")
+  
   console.log(inputValue)
 
   return (

@@ -1,10 +1,11 @@
 import StudentDataCSS from './StudentData.module.css'
 
-interface StudentProps {
-  idNumber: String,
-  name: String,
-  program: String,
-  timeIn: String
+
+type StudentProps = {
+  idNumber: string,
+  name: string,
+  program: string,
+  timeIn: string
 }
 
 export default function StudentData(props: StudentProps) {
