@@ -8,7 +8,7 @@ type RawAttendanceData = {
   id: number,
   time_status: number,
   date_time: '',
-  student_id: ''
+  student_id: string
 }
 type RawStudentData = {
   student_id: string,
@@ -17,6 +17,7 @@ type RawStudentData = {
   program: string,
   year: number
 }
+
 
 // This will hold the data that will be printed out in the student lists
 type StudentData = { 
@@ -32,6 +33,7 @@ type StudentData = {
 
 export default function StudentList() {
  // <Student[]> states that the variable that has this attached will be an array of objects Student
+  const [attendanceStudentInfo, setAttendanceStudentInfo] = React.useState<RawAttendanceData[]>([])
   const [studentId, setStudentId] = React.useState<string[]>([])
   const [allStudentInfo, setAllStudentInfo] = React.useState<RawStudentData[]>([])
   const [timeInStudentData, setTimeInStudentData] = React.useState<StudentData[]>()
@@ -82,6 +84,7 @@ export default function StudentList() {
 
       const student_ids = attendanceData.map(student => student.student_id);
       setStudentId(student_ids);
+      setAttendanceStudentInfo(attendanceData); // Make this a set
       setAllStudentInfo(studentData);
       
       
@@ -90,12 +93,36 @@ export default function StudentList() {
     fetchData()
   }, [])
 
-  console.log(studentId)
-  console.log(allStudentInfo)
+ 
+  // Tuple of key 'student_id' and value 'date_time' from 'attendanceStudentInfo' that will be put in the 'IdDateTime'
+  const studentIdAndTime: [string, string][] = attendanceStudentInfo.map(student => ([
+    student.student_id, student.date_time
+  ]))
 
-  // Get only the data of the students that has their id in the student_ids
-  // use the 'Set' data type
-  let tempStudentVariable: StudentData[];
+  // use the 'Map' data type. Reason: looking up data(key=>value) in a map is 0(1) time complexity which is much faster than using an array when dealing with large data 
+  const IdDateTime = new Map(studentIdAndTime);
+
+
+  // Filters 'allStudentInfo' to only include students whose 'student_id' is in 'IdDateTime'
+  // Then creates an object for each student with their details and adds it to the result
+  // The result is an array of objects assigned to 'filteredData'
+  const filteredData = allStudentInfo.filter(student => IdDateTime.has(student.student_id)).map(student => ({
+    IdNumber: student.student_id,
+    Name: student.fName,
+    Program: student.program,
+    TimeIn: IdDateTime.get(student.student_id)
+  }))
+
+  console.log(filteredData);
+
+
+  
+
+  
+  
+  
+
+
 
 
 
