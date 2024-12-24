@@ -7,7 +7,7 @@ import StudentListCSS from './StudentList.module.css'
 type RawAttendanceData = {
   id: number,
   time_status: number,
-  date_time: '',
+  date_time: string,
   student_id: string
 }
 type RawStudentData = {
@@ -20,11 +20,17 @@ type RawStudentData = {
 
 
 // This will hold the data that will be printed out in the student lists
-type StudentData = { 
+type timeInStudentData = { 
   IdNumber: string,
   Name: string,
   Program: string,
-  TimeIn: number
+  TimeIn: string 
+}
+type timeOutStudentData = { 
+  IdNumber: string,
+  Name: string,
+  Program: string,
+  TimeOut: string
 }
 
 
@@ -32,11 +38,12 @@ type StudentData = {
 
 
 export default function StudentList() {
- // <Student[]> states that the variable that has this attached will be an array of objects Student
-  const [attendanceStudentInfo, setAttendanceStudentInfo] = React.useState<RawAttendanceData[]>([])
-  const [studentId, setStudentId] = React.useState<string[]>([])
-  const [allStudentInfo, setAllStudentInfo] = React.useState<RawStudentData[]>([])
-  const [timeInStudentData, setTimeInStudentData] = React.useState<StudentData[]>()
+ // Not sure if 'attendanceStudentInfo' and 'allStudentInfo' is needed here
+ // In POST: If the students already in timed out and timed in shouldn't be doubled
+  const [attendanceStudentInfo, setAttendanceStudentInfo] = React.useState<RawAttendanceData[]>([]) // students that got their attendance checked
+  const [allStudentInfo, setAllStudentInfo] = React.useState<RawStudentData[]>([]) // registered students
+  const [timeInStudentData, setTimeInStudentData] = React.useState<timeInStudentData[]>() // timed in students
+  const [timeOutStudentData, setTimeOutStudentData] = React.useState<timeOutStudentData[]>() // timed out students
 
   // const studentIds = only the student_ids in the attendance endpoint that has the time_status = 1 (time in)
   // const allStudentData = all the data of student endpoint
@@ -47,17 +54,7 @@ export default function StudentList() {
 
   React.useEffect(()=>{
     async function fetchData() {
-      //const response = await fetch("https://lites-ams-api-main.vercel.app/attendance/get");
-      // Make the type of data an array of types Student
-      //const data: Student[] = await response.json();
-      // Get the student ids in the array of objects
-      //const student_ids = data.map((student) => student.student_id);
-      //setStudentId(student_ids);
-
-      const allStudentResponse = await fetch("https://lites-ams-api-main.vercel.app/student/get");
-      const allStudentData = await allStudentResponse.json();
-      setAllStudentInfo(allStudentData);
-
+      
       const [attendanceResponse, studentResponse] = await Promise.allSettled([
         fetch("https://lites-ams-api-main.vercel.app/attendance/get"),
         fetch("https://lites-ams-api-main.vercel.app/student/get")
@@ -72,20 +69,53 @@ export default function StudentList() {
 
       if (attendanceResponse.status == "fulfilled") {
         attendanceData = await attendanceResponse.value.json();
+        setAttendanceStudentInfo(attendanceData);
       } else {
         console.error(attendanceResponse.reason);
       }
 
       if (studentResponse.status == "fulfilled") {
         studentData = await studentResponse.value.json();
+        setAllStudentInfo(studentData);
       } else {
         console.error(studentResponse.reason);
       }
 
-      const student_ids = attendanceData.map(student => student.student_id);
-      setStudentId(student_ids);
-      setAttendanceStudentInfo(attendanceData); // Make this a set
-      setAllStudentInfo(studentData);
+
+      // Tuple of key 'student_id' and value 'date_time' from 'attendanceStudentInfo' that will be put in the 'IdDateTime'
+      // How about parsing the time here ???
+      const timeInStudentIdAndTime: [string, string][] = attendanceData.filter(student => student.time_status == 1).map(student => ([
+        student.student_id, new Date(student.date_time).toTimeString().split(" ")[0]
+      ]))
+      const timeOutStudentIdAndTime: [string, string][] = attendanceData.filter(student => student.time_status == 0).map(student => ([
+        student.student_id, new Date(student.date_time).toTimeString().split(" ")[0]
+      ]))
+
+      
+      // use the 'Map' data type. Reason: looking up data(key=>value) in a map is 0(1) time complexity which is much faster than using an array when dealing with large data 
+      const timeInIdDateTime = new Map(timeInStudentIdAndTime);
+      const timeOutIdDateTime = new Map(timeOutStudentIdAndTime);
+
+
+      // Filters 'allStudentInfo' to only include students whose 'student_id' is in 'IdDateTime'
+      // Then creates an object for each student with their details and adds it to the result
+      // The result is an array of objects assigned to 'filteredData'
+      const timeInFilteredData = studentData.filter(student => timeInIdDateTime.has(student.student_id)).map(student => ({
+        IdNumber: student.student_id,
+        Name: student.fName,
+        Program: student.program,
+        TimeIn: timeInIdDateTime.get(student.student_id) || "Error on API"
+      }))
+      setTimeInStudentData(timeInFilteredData);
+
+
+      const timeOutFilteredData = studentData.filter(student => timeOutIdDateTime.has(student.student_id)).map(student => ({
+        IdNumber: student.student_id,
+        Name: student.fName,
+        Program: student.program,
+        TimeOut: timeOutIdDateTime.get(student.student_id) || "Error on API"
+      }))
+      setTimeOutStudentData(timeOutFilteredData);
       
       
     }
@@ -93,28 +123,12 @@ export default function StudentList() {
     fetchData()
   }, [])
 
+  console.log(timeInStudentData);
+  console.log(timeOutStudentData);
+
+
  
-  // Tuple of key 'student_id' and value 'date_time' from 'attendanceStudentInfo' that will be put in the 'IdDateTime'
-  const studentIdAndTime: [string, string][] = attendanceStudentInfo.map(student => ([
-    student.student_id, student.date_time
-  ]))
-
-  // use the 'Map' data type. Reason: looking up data(key=>value) in a map is 0(1) time complexity which is much faster than using an array when dealing with large data 
-  const IdDateTime = new Map(studentIdAndTime);
-
-
-  // Filters 'allStudentInfo' to only include students whose 'student_id' is in 'IdDateTime'
-  // Then creates an object for each student with their details and adds it to the result
-  // The result is an array of objects assigned to 'filteredData'
-  const filteredData = allStudentInfo.filter(student => IdDateTime.has(student.student_id)).map(student => ({
-    IdNumber: student.student_id,
-    Name: student.fName,
-    Program: student.program,
-    TimeIn: IdDateTime.get(student.student_id)
-  }))
-
-  console.log(filteredData);
-
+  
 
   
 
