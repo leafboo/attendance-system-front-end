@@ -98,7 +98,7 @@ export default function StudentList() {
 
 
       // Filters 'allStudentInfo' to only include students whose 'student_id' is in 'IdDateTime'
-      // Then creates an object for each student with their details and adds it to the result
+      // Then creates an object for each student with their details and adds it to the result array
       // The result is an array of objects assigned to 'filteredData'
       const timeInFilteredData = studentData.filter(student => timeInIdDateTime.has(student.student_id)).map(student => ({
         IdNumber: student.student_id,
@@ -121,11 +121,18 @@ export default function StudentList() {
     }
 
     fetchData()
-  }, [])
+  }, [timeInStudentData])
 
   console.log(timeInStudentData);
   console.log(timeOutStudentData);
 
+  const timeInElement = timeInStudentData?.map(student => 
+    <StudentData idNumber={student.IdNumber}
+                 name={student.Name}
+                 program={student.Program}
+                 timeIn={student.TimeIn} />
+  )
+
 
  
   
@@ -133,15 +140,6 @@ export default function StudentList() {
   
 
   
-  
-  
-
-
-
-
-
-  
- 
 
   return (
     <>
@@ -160,60 +158,11 @@ export default function StudentList() {
               </thead>
 
               <tbody>
-                <StudentData idNumber="1601369" 
-                             name="Eduardo Anthony B. Yalung" 
-                             program="BSIT-3"
-                             timeIn="8:00 AM" />
+                
+               
 
-                <StudentData idNumber="1702361" 
-                             name="Kareem Julian Q. Cayetano" 
-                             program="BSCS-1"
-                             timeIn="7:57 AM" />
-
-                <StudentData idNumber="1701232" 
-                             name="Aureliano George L. Barrameda" 
-                             program="BSCS-1"
-                             timeIn="7:56 AM" />
-
-                <StudentData idNumber="1732461" 
-                             name="Graciana A. Cantillo" 
-                             program="BSCS-3"
-                             timeIn="7:48 AM" />
-
-                <StudentData idNumber="1612361" 
-                             name="Kristofer K. Infante" 
-                             program="BSCS-2"
-                             timeIn="7:45 AM" />
-
-                <StudentData idNumber="1748392" 
-                             name="Brodie Derek E. Cervantes" 
-                             program="BSCS-4"
-                             timeIn="7:40 AM" />
-
-                <StudentData idNumber="1232290" 
-                             name="Ellis D. Arellano" 
-                             program="BSCS-4"
-                             timeIn="7:39 AM" />
-
-                <StudentData idNumber="1938390" 
-                             name="Cynthia A. Apostol" 
-                             program="BSCS-4"
-                             timeIn="7:39 AM" />
-
-                 <StudentData idNumber="1038489" 
-                             name="Jiro B. Lozada" 
-                             program="BSIT-3"
-                             timeIn="7:36 AM" />
-
-                <StudentData idNumber="0182839" 
-                             name="Ash V. Rodriguez" 
-                             program="BSCS-1"
-                             timeIn="7:35 AM" />
-
-                <StudentData idNumber="1947389" 
-                             name="Princess A. Canlas" 
-                             program="BSCS-1"
-                             timeIn="7:35 AM" />
+               
+                {timeInElement}
               </tbody>
 
           </table>
