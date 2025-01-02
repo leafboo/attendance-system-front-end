@@ -1,9 +1,11 @@
 import InputCSS from './Input.module.css'
 import React from 'react'
 
+type inputProps = {
+  fetchData: () => void
+};
 
-
-export default function Input() {
+export default function Input(props: inputProps) {
 
   async function addAttendance(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -18,6 +20,7 @@ export default function Input() {
       })
       const data = await response.json();
       console.log(data)
+      props.fetchData();
 
     } catch (error) {
       console.log(error)
@@ -31,7 +34,6 @@ export default function Input() {
 
   const [inputValue, setInputValue] = React.useState<string>("")
   
-  console.log(inputValue)
 
   return (
     <>
