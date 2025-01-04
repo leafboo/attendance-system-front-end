@@ -38,6 +38,8 @@ type timeOutStudentData = {
 
 
 export default function StudentList() {  
+  // type UseState<S> = (action: S | ((prevState: S) => S)) => void; this is the type of useState
+  const [isTimeIn, setIsTimeIn] = React.useState(true); 
   const [timeInStudentData, setTimeInStudentData] = React.useState<timeInStudentData[]>() // timed in students
   const [timeOutStudentData, setTimeOutStudentData] = React.useState<timeOutStudentData[]>() // timed out students
 
@@ -115,21 +117,31 @@ export default function StudentList() {
 
   
 
-  const timeInElement = timeInStudentData?.map(student => 
+  const timeInElement = timeInStudentData?.map(student => // if isTimeIn == 1
     <StudentData idNumber={student.IdNumber}
                  name={student.Name}
                  program={student.Program}
                  timeIn={student.TimeIn} />
   )
+  const timeOutElement = timeOutStudentData?.map(student => // if isTimeIn == 0
+    <StudentData idNumber={student.IdNumber}
+                 name={student.Name}
+                 program={student.Program}
+                 timeIn={student.TimeOut} />
+  )
 
+  
 
+  console.log(isTimeIn);
  
 
   return (
     <>
       <span className={StudentListCSS['body-container']}>
         <div className={StudentListCSS['body']}>
-          <Input fetchData={fetchData} />
+          <Input fetchData={fetchData} 
+                 isTimeIn={isTimeIn}
+                 setIsTimeIn={setIsTimeIn} />
           <span className={StudentListCSS['table-container']}>
             <table className={StudentListCSS['table']}>
               <thead>
@@ -137,12 +149,12 @@ export default function StudentList() {
                   <th>Id No</th>
                   <th>Name</th>
                   <th>Program</th>
-                  <th>Time in</th>
+                  <th>{isTimeIn === true ? "Time In" : "Time Out"}</th>
                 </tr>
               </thead>
 
               <tbody>
-                {timeInElement}
+                {isTimeIn === true ? timeInElement : timeOutElement}
               </tbody>
 
           </table>

@@ -1,8 +1,11 @@
 import InputCSS from './Input.module.css'
+import { Dispatch, SetStateAction } from "react";
 import React from 'react'
 
 type inputProps = {
-  fetchData: () => void
+  fetchData: () => void,
+  isTimeIn: boolean,
+  setIsTimeIn: Dispatch<SetStateAction<boolean>>   //it's basically saying "setIsTimeIn: type of useState (refer to parent component)"
 };
 
 export default function Input(props: inputProps) {
@@ -15,7 +18,7 @@ export default function Input(props: inputProps) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           student_id: inputValue,
-          time_status: 1
+          time_status: props.isTimeIn === true ? 1 : 0
         })
       })
       const data = await response.json();
@@ -25,6 +28,8 @@ export default function Input(props: inputProps) {
     } catch (error) {
       console.log(error)
     }
+
+    
     
 
     console.log("button clicked")
@@ -32,8 +37,11 @@ export default function Input(props: inputProps) {
     setInputValue("")
   }
 
+  
+
   const [inputValue, setInputValue] = React.useState<string>("")
   
+  const switchListButtonValue = props.isTimeIn === true ? "Time Out >" : "< Time In";
 
   return (
     <>
@@ -42,7 +50,9 @@ export default function Input(props: inputProps) {
           <input type="submit" value='Enter' className={InputCSS['enter-button']} />
           <input type="text" value={inputValue} placeholder='Input Id no' className={InputCSS['input-box']} onInput={(input) => { setInputValue((input.target as HTMLInputElement).value) }} />
         </form>
-        <button className={InputCSS['right-section']}>Time out &gt;</button>
+        <button className={InputCSS['right-section']} onClick={() => {
+          props.setIsTimeIn(prevIsTimeIn => !prevIsTimeIn)
+        }}>{switchListButtonValue} </button>
       </div>
 
     </>
