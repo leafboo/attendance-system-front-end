@@ -74,14 +74,14 @@ export default function StudentList() {
       console.error(studentResponse.reason);
     }
 
-
+    const formatter = new Intl.DateTimeFormat('en-PH', {hour: 'numeric', minute: 'numeric'});
     
     const timeInStudentIdAndTime: [string, string][] = attendanceData.filter(student => student.time_status == 1).map(student => ([
-      student.student_id, new Date(student.date_time).toTimeString().split(" ")[0]
-    ]))
+      student.student_id, formatter.format(new Date(student.date_time))
+    ]));
     const timeOutStudentIdAndTime: [string, string][] = attendanceData.filter(student => student.time_status == 0).map(student => ([
-      student.student_id, new Date(student.date_time).toTimeString().split(" ")[0]
-    ]))
+      student.student_id, formatter.format(new Date(student.date_time))
+    ]));
 
     
     // use the 'Map' data type. Reason: looking up data(key=>value) in a map is 0(1) time complexity which is much faster than using an array when dealing with large data 
