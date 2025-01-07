@@ -1,6 +1,25 @@
 .student-data-row {
   background-color: rgba(141, 88, 37, .13);
   font-size: 1.3rem;
-  padding: 1rem 1rem;
+ 
 } 
+
+.delete-button {
+  opacity: .6;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  margin-right: 1rem;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+.delete-button:hover {
+  opacity: 1;
+}
+
+
+.name-column {
+  width: 40%;
+}
+
 

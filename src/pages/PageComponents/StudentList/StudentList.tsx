@@ -3,6 +3,7 @@ import Input from "../Input/Input"
 import StudentData from "../../../StudentData/StudentData"
 import StudentListCSS from './StudentList.module.css'
 
+
 // These two are the types for the raw data from the api
 type RawAttendanceData = {
   id: number,

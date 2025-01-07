@@ -26,7 +26,7 @@ export default function Input(props: inputProps) {
       props.fetchData();
 
     } catch (error) {
-      console.log(error)
+      console.error(error)
     }
 
     
@@ -37,11 +37,26 @@ export default function Input(props: inputProps) {
     setInputValue("")
   }
 
+  async function deleteAttendance(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    try {
+      const response = await fetch(`https://lites-ams-api-main.vercel.app/attendance/delete?student_id=${inputValue}&time_status=${timeStatus}`,{
+        method: 'DELETE'
+      });
+      const data = await response.json();
+      console.log(data)
+
+    } catch(error) {
+      console.error(error);
+    }
+  }
+
   
 
   const [inputValue, setInputValue] = React.useState<string>("")
   
   const switchListButtonValue = props.isTimeIn === true ? "Time Out >" : "< Time In";
+  const timeStatus = props.isTimeIn === true ? 1 : 0;
 
   return (
     <>
