@@ -65,7 +65,7 @@ export default function Input(props: inputProps) {
           <input type="submit" value='Enter' className={InputCSS['enter-button']} />
           <input type="text" value={inputValue} placeholder='Input Id no' className={InputCSS['input-box']} onInput={(input) => { setInputValue((input.target as HTMLInputElement).value) }} />
         </form>
-        <button className={InputCSS['right-section']} onClick={() => {
+        <button type="submit" className={InputCSS['right-section']} onClick={() => {
           props.setIsTimeIn(prevIsTimeIn => !prevIsTimeIn)
         }}>{switchListButtonValue} </button>
       </div>
