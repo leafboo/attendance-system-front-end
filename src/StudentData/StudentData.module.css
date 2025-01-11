@@ -28,7 +28,18 @@ if % is used, move by the percent of the size of the element
 
 if the element's width is 100px, 100% means to move by 100px*/
 
-.delete-popup { 
+#overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0,0,0,0.4);  
+  z-index: 1000;
+}
+
+.delete-modal { 
+  position: fixed;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -46,7 +57,7 @@ if the element's width is 100px, 100% means to move by 100px*/
   
 }
 
-@keyframes loadPopUp{
+@keyframes loadModal{
   from {
     transform: translate(-50%, -50%) scale(0.5);
   }
@@ -84,6 +95,9 @@ if the element's width is 100px, 100% means to move by 100px*/
 .yes-button {
   background-color: #CC241D;
 }
+
+
+
 
 
 

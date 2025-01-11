@@ -12,14 +12,14 @@ type StudentProps = {
 // Note to self: don't manipulate the dom when using react
 
 export default function StudentData(props: StudentProps) {
-  const [isDeletePopUpOpen, setIsDeletePopUpOpen] = React.useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = React.useState(false);
   
   function openPopUp() {
-    setIsDeletePopUpOpen(true);
+    setIsDeleteModalOpen(true);
     
   }
   function closePopUp() {
-    setIsDeletePopUpOpen(false);
+    setIsDeleteModalOpen(false);
   }
 
 
@@ -32,16 +32,21 @@ export default function StudentData(props: StudentProps) {
       <td className={StudentDataCSS['delete-button']} ><img src={deleteIcon} alt="X" onClick={openPopUp} /> </td>
 
       {
-        isDeletePopUpOpen && 
-        <div className={StudentDataCSS['delete-popup']} id='delete-popup'>
-          <div>Are you sure you want to remove</div>
-          <div>{props.name}?</div>
-          <div className={StudentDataCSS['buttons']}>
-            <button className={StudentDataCSS['no-button']} onClick={closePopUp}>No</button>
-            <button className={StudentDataCSS['yes-button']} onClick={closePopUp}>Yes</button>
+        isDeleteModalOpen && 
+        <>
+          <div id={StudentDataCSS['overlay']}>
+          <div className={StudentDataCSS['delete-modal']} id='delete-modal'>
+              <div>Are you sure you want to remove</div>
+              <div>{props.name}?</div>
+              <div className={StudentDataCSS['buttons']}>
+                <button className={StudentDataCSS['no-button']} onClick={closePopUp}>No</button>
+                <button className={StudentDataCSS['yes-button']} onClick={closePopUp}>Yes</button>
+              </div>
+            </div>
           </div>
-        </div>
+        </>
       }
+      
       
      
       
