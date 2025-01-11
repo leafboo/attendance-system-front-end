@@ -6,7 +6,9 @@ type StudentProps = {
   idNumber: string,
   name: string,
   program: string,
-  timeIn: string
+  time: string,
+  isTimeIn: boolean,
+  fetchData: () => void
 }
 
 // Note to self: don't manipulate the dom when using react
@@ -22,14 +24,30 @@ export default function StudentData(props: StudentProps) {
     setIsDeleteModalOpen(false);
   }
 
+  async function deleteAttendance() {
+    try {
+      const response = await fetch(`https://lites-ams-api-main.vercel.app/attendance/delete?student_id=${props.idNumber}&time_status=${props.isTimeIn ? 1 : 0}`,{
+        method: 'DELETE'
+      });
+      const data = await response.json();
+      console.log(data)
+      props.fetchData();
+
+    } catch(error) {
+      console.error(error);
+    }
+  }
+
+  
+
 
   return (
     <tr className={StudentDataCSS['student-data-row']}>
       <td>{props.idNumber}</td>
       <td className={StudentDataCSS['name-column']}>{props.name}</td>
       <td>{props.program}</td>
-      <td>{props.timeIn}</td>
-      <td className={StudentDataCSS['delete-button']} ><img src={deleteIcon} alt="X" onClick={openPopUp} /> </td>
+      <td>{props.time}</td>
+      <td className={StudentDataCSS['delete-button']} ><img src={deleteIcon} alt="&times;" onClick={openPopUp} /> </td>
 
       {
         isDeleteModalOpen && 
@@ -40,7 +58,10 @@ export default function StudentData(props: StudentProps) {
               <div>{props.name}?</div>
               <div className={StudentDataCSS['buttons']}>
                 <button className={StudentDataCSS['no-button']} onClick={closePopUp}>No</button>
-                <button className={StudentDataCSS['yes-button']} onClick={closePopUp}>Yes</button>
+                <button className={StudentDataCSS['yes-button']} onClick={() => {
+                  deleteAttendance();
+                  closePopUp();
+                }} >Yes</button>
               </div>
             </div>
           </div>

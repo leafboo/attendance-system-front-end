@@ -122,18 +122,19 @@ export default function StudentList() {
     <StudentData idNumber={student.IdNumber}
                  name={student.Name}
                  program={student.Program}
-                 timeIn={student.TimeIn} />
+                 time={student.TimeIn}
+                 isTimeIn={isTimeIn} 
+                 fetchData={fetchData} />
   )
   const timeOutElement = timeOutStudentData?.map(student => // if isTimeIn == 0
     <StudentData idNumber={student.IdNumber}
                  name={student.Name}
                  program={student.Program}
-                 timeIn={student.TimeOut} />
+                 time={student.TimeOut}
+                 isTimeIn={isTimeIn} 
+                 fetchData={fetchData} />  
   )
 
-  
-
-  console.log(isTimeIn);
  
 
   return (
