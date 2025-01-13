@@ -57,4 +57,34 @@
   margin-top: 5rem;
 }
 
+.footer {
+  margin-top: 3rem;
+  display: flex;
+  width: 60rem;
+  position: relative;
+  justify-content: center;
+}
+
+.arrows {
+  width: 10rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.left-arrow-active, .right-arrow-active {
+  opacity: 0.5;
+}
+.left-arrow, .right-arrow {
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+.left-arrow:hover, .right-arrow:hover {
+  opacity: 0.5;
+}
+
+.delete-all-button {
+  position: absolute;
+  right: 0;
+}
+
 

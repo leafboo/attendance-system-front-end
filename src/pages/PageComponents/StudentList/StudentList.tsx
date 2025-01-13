@@ -1,7 +1,10 @@
-import React from "react"
-import Input from "../Input/Input"
-import StudentData from "../../../StudentData/StudentData"
-import StudentListCSS from './StudentList.module.css'
+import React from "react";
+import Input from "../Input/Input";
+import StudentData from "../../../StudentData/StudentData";
+import StudentListCSS from "./StudentList.module.css";
+import LeftArrowIcon from "../../../icons/left-arrow.png";
+import RightArrowIcon from "../../../icons/right-arrow.png";
+
 
 
 // These two are the types for the raw data from the api
@@ -135,6 +138,11 @@ export default function StudentList() {
                  fetchData={fetchData} />  
   )
 
+  let rightArrowClassName = isTimeIn === true ? 'right-arrow' : 'right-arrow-active';
+  let leftArrowClassName = isTimeIn === true ? 'left-arrow-active' : 'left-arrow';
+
+  console.log("rendered");
+  console.log(isTimeIn);
  
 
   return (
@@ -142,8 +150,7 @@ export default function StudentList() {
       <span className={StudentListCSS['body-container']}>
         <div className={StudentListCSS['body']}>
           <Input fetchData={fetchData} 
-                 isTimeIn={isTimeIn}
-                 setIsTimeIn={setIsTimeIn} />
+                 isTimeIn={isTimeIn} />
           <span className={StudentListCSS['table-container']}>
             <table className={StudentListCSS['table']}>
               <thead>
@@ -161,6 +168,14 @@ export default function StudentList() {
 
           </table>
           </span>
+          <div className={StudentListCSS['footer']}>
+            <div className={StudentListCSS['arrows']}>
+              <img src={LeftArrowIcon} alt="left arrow" className={StudentListCSS[leftArrowClassName]} onClick={() => {isTimeIn === false ? setIsTimeIn(true) : ''}} />
+              <img src={RightArrowIcon} alt="right arrow" className={StudentListCSS[rightArrowClassName]} onClick={() => {isTimeIn === true ? setIsTimeIn(false) : ''}} />
+            </div>
+            <div className={StudentListCSS['delete-all-button']}>delete all button</div>
+            
+          </div>
           
          
         </div>
