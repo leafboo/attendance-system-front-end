@@ -35,6 +35,10 @@ export default function Input(props: inputProps) {
     setInputValue("")
   }
 
+  async function searchStudent() {
+
+  }
+
 
 
   const [inputValue, setInputValue] = React.useState<string>("")
@@ -43,10 +47,17 @@ export default function Input(props: inputProps) {
   return (
     <>
       <div className={InputCSS['input-container']}>
-        <form onSubmit={addAttendance} className={InputCSS['left-section']}>
-          <input type="submit" value='Enter' className={InputCSS['enter-button']} />
-          <input type="text" value={inputValue} placeholder='Input Id no' className={InputCSS['input-box']} onInput={(input) => { setInputValue((input.target as HTMLInputElement).value) }} />
+
+        <form onSubmit={searchStudent}>
+          <input type="submit" value='Search' className={InputCSS['search-button']} />
+          <input type="text" placeholder='Id Number' className={InputCSS['input-box']} />
         </form>
+
+        <form onSubmit={addAttendance} >
+          <input type="submit" value='Add' className={InputCSS['add-button']} />
+          <input type="text" value={inputValue} placeholder='Id Number' className={InputCSS['input-box']} onInput={(input) => { setInputValue((input.target as HTMLInputElement).value) }} />
+        </form>
+        
       </div>
 
     </>
