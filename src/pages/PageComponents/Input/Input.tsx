@@ -1,5 +1,5 @@
 import InputCSS from './Input.module.css'
-import React from 'react'
+import React, {ChangeEvent} from 'react'
 //import { Dispatch, SetStateAction } from "react";
 
 
@@ -18,7 +18,7 @@ export default function Input(props: inputProps) {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          student_id: inputValue,
+          student_id: addInputValue,
           time_status: props.isTimeIn === true ? 1 : 0
         })
       })
@@ -30,9 +30,7 @@ export default function Input(props: inputProps) {
       console.error(error)
     }
 
-    console.log("button clicked")
-
-    setInputValue("")
+    setAddInputValue("")
   }
 
   async function searchStudent() {
@@ -40,9 +38,22 @@ export default function Input(props: inputProps) {
   }
 
 
+  const [searchInputValue, setSearchInputValue] = React.useState<string>("")
+  const [addInputValue, setAddInputValue] = React.useState<string>("")
 
-  const [inputValue, setInputValue] = React.useState<string>("")
-  
+  const handleChangeOnSearch = (event: ChangeEvent<HTMLInputElement>) => {
+    if (addInputValue.length !== 0) {
+      setAddInputValue("");
+    }
+    setSearchInputValue((event.target as HTMLInputElement).value);
+  }
+  const handleChangeOnAdd = (event: ChangeEvent<HTMLInputElement>) => {
+    if (searchInputValue.length !== 0) {
+      setSearchInputValue("");
+    }
+    setAddInputValue((event.target as HTMLInputElement).value);
+  }
+
 
   return (
     <>
@@ -50,14 +61,14 @@ export default function Input(props: inputProps) {
 
         <form onSubmit={searchStudent}>
           <input type="submit" value='Search' className={InputCSS['search-button']} />
-          <input type="text" placeholder='Id Number' className={InputCSS['input-box']} />
+          <input type="text" value={searchInputValue} placeholder='Id Number' className={InputCSS['input-box']} onInput={handleChangeOnSearch} />
         </form>
 
         <form onSubmit={addAttendance} >
           <input type="submit" value='Add' className={InputCSS['add-button']} />
-          <input type="text" value={inputValue} placeholder='Id Number' className={InputCSS['input-box']} onInput={(input) => { setInputValue((input.target as HTMLInputElement).value) }} />
+          <input type="text" value={addInputValue} placeholder='Id Number' className={InputCSS['input-box']} onInput={handleChangeOnAdd} />
         </form>
-        
+
       </div>
 
     </>
