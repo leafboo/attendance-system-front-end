@@ -6,34 +6,26 @@
 .header {
   display: flex;
   width: 70rem;
-  justify-content: space-between;
+  justify-content: left;
   padding-top: 2rem;
-  padding-left: 4rem;
+  padding-left: 7rem;
   padding-right: 4rem;
   margin-bottom: 2rem;
 }
 
-.left-section {
-  width: 37rem;
-  display: flex;
-  justify-content: space-between;
-  padding-left: 2rem;
-  padding-right: 2rem;
-}
-.left-section > span {
+
+.pages > span {
   font-size: 1.6rem;
+  margin-right: 5rem;
 }
 
-.attendance, .list, .excel {
+.attendance, .download-list {
   cursor: pointer;
+  opacity: .5;
   transition: opacity 0.15s;
 }
-.attendance:hover, .list:hover, .excel:hover {
+.attendance:hover, .download-list:hover {
   opacity: 1;
-}
-
-.attendance, .list, .excel {
-  opacity: .5;
 }
 
 .active-page {
@@ -41,7 +33,5 @@
 }
 
 
-.right-section {
-  cursor: pointer;
-}
+
 

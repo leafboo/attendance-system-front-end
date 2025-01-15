@@ -45,13 +45,14 @@ export default function Input(props: inputProps) {
     if (addInputValue.length !== 0) {
       setAddInputValue("");
     }
-    setSearchInputValue((event.target as HTMLInputElement).value);
+   
+    setSearchInputValue(event.target.value);
   }
   const handleChangeOnAdd = (event: ChangeEvent<HTMLInputElement>) => {
     if (searchInputValue.length !== 0) {
       setSearchInputValue("");
     }
-    setAddInputValue((event.target as HTMLInputElement).value);
+    setAddInputValue(event.target.value);
   }
 
 
