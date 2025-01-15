@@ -1,5 +1,6 @@
 import React from "react";
 import Input from "../Input/Input";
+import DeleteButton from "../../../components/DeleteAllButton/DeleteAllButton";
 import StudentData from "../../../StudentData/StudentData";
 import StudentListCSS from "./StudentList.module.css";
 import LeftArrowIcon from "../../../icons/left-arrow.png";
@@ -173,7 +174,9 @@ export default function StudentList() {
               <img src={LeftArrowIcon} alt="left arrow" className={StudentListCSS[leftArrowClassName]} onClick={() => {isTimeIn === false ? setIsTimeIn(true) : ''}} />
               <img src={RightArrowIcon} alt="right arrow" className={StudentListCSS[rightArrowClassName]} onClick={() => {isTimeIn === true ? setIsTimeIn(false) : ''}} />
             </div>
-            <div className={StudentListCSS['delete-all-button']}>delete all button</div>
+            <div className={StudentListCSS['delete-all-button']}>
+              <DeleteButton isTimeIn={isTimeIn} />
+            </div>
             
           </div>
           

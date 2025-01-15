@@ -1,0 +1,16 @@
+.delete-all-button {
+  border: solid 1px #CC241D;
+  background-color: transparent;
+  font-family: "JetBrains Mono";
+  font-size: 1.5rem;
+  padding: .5rem 1.2rem;
+  cursor: pointer;
+  border-radius: 5rem;
+  color: #CC241D;
+  opacity: .6;
+  transition: opacity 0.15s;
+}
+
+.delete-all-button:hover {
+  opacity: 1;
+}

@@ -28,73 +28,7 @@ if % is used, move by the percent of the size of the element
 
 if the element's width is 100px, 100% means to move by 100px*/
 
-#overlay {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgba(0,0,0,0.4);  
-  z-index: 1000;
-}
 
-.delete-modal { 
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 30rem;
-  height: 16rem;
-  background-color: #0E0A07;
-  border: 1px solid #DCBD9E;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); 
-  animation-name: loadPopUp; 
-  animation-duration: 0.15s;
-  
-}
-
-@keyframes loadModal{
-  from {
-    transform: translate(-50%, -50%) scale(0.5);
-  }
-
-  to {
-    transform: translate(-50%, -50%) scale(1);
-  }
-}
-
-
-
-.buttons {
-  width: 60%;
-  display: flex;
-  margin-top: 2rem;
-  justify-content: space-between;
-}
-
-.no-button, .yes-button {
-  padding: .5rem 2rem;
-  color: #F1EDE9;
-  border: none;
-  font-size: larger;
-  cursor: pointer;
-  transition: opacity 0.15s;
-  font-family: "JetBrains Mono";
-}
-.no-button:hover, .yes-button:hover {
-  opacity: .5;
-}
-
-.no-button {
-  background-color: #699957;
-}
-.yes-button {
-  background-color: #CC241D;
-}
 
 
 

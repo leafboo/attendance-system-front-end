@@ -1,7 +1,7 @@
 import React from "react"
 import Login from "./pages/Login/Login"
 import Attendance from "./pages/Attendance/Attendance"
-import List from "./pages/List/List"
+import List from "./pages/DownloadList/List"
 
 
 export default function App() {

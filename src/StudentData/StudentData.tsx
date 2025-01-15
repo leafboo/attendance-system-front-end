@@ -1,6 +1,7 @@
 import StudentDataCSS from './StudentData.module.css';
 import deleteIcon from '../icons/delete-icon.png';
 import React from 'react';
+import DeleteModal from '../components/DeleteModal/DeleteModal';
 
 type StudentProps = {
   idNumber: string,
@@ -16,29 +17,12 @@ type StudentProps = {
 export default function StudentData(props: StudentProps) {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = React.useState(false);
   
+  
+
   function openPopUp() {
     setIsDeleteModalOpen(true);
     
   }
-  function closePopUp() {
-    setIsDeleteModalOpen(false);
-  }
-
-  async function deleteAttendance() {
-    try {
-      const response = await fetch(`https://lites-ams-api-main.vercel.app/attendance/delete?student_id=${props.idNumber}&time_status=${props.isTimeIn ? 1 : 0}`,{
-        method: 'DELETE'
-      });
-      const data = await response.json();
-      console.log(data)
-      props.fetchData();
-
-    } catch(error) {
-      console.error(error);
-    }
-  }
-
-  
 
 
   return (
@@ -50,22 +34,11 @@ export default function StudentData(props: StudentProps) {
       <td className={StudentDataCSS['delete-button']} ><img src={deleteIcon} alt="&times;" onClick={openPopUp} /> </td>
 
       {
-        isDeleteModalOpen && 
-        <>
-          <div id={StudentDataCSS['overlay']}>
-          <div className={StudentDataCSS['delete-modal']} id='delete-modal'>
-              <div>Are you sure you want to remove</div>
-              <div>{props.name}?</div>
-              <div className={StudentDataCSS['buttons']}>
-                <button className={StudentDataCSS['no-button']} onClick={closePopUp}>No</button>
-                <button className={StudentDataCSS['yes-button']} onClick={() => {
-                  deleteAttendance();
-                  closePopUp();
-                }} >Yes</button>
-              </div>
-            </div>
-          </div>
-        </>
+        isDeleteModalOpen && <DeleteModal name={props.name} 
+                                          idNumber={props.idNumber}
+                                          setIsDeleteModalOpen={setIsDeleteModalOpen}
+                                          fetchData={props.fetchData}
+                                          isTimeIn={props.isTimeIn} />
       }
       
       
