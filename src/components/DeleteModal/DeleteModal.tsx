@@ -35,7 +35,7 @@ export default function DeleteModal(props: DeleteModalProps) {
   return (
     <>
       <div id={DeleteModalCSS['overlay']}>
-      <div className={DeleteModalCSS['delete-modal']} id='delete-modal'>
+      <div className={DeleteModalCSS['delete-modal']}>
           <div>Are you sure you want to remove</div>
           <div>{props.name}?</div>
           <div className={DeleteModalCSS['buttons']}>
