@@ -13,28 +13,37 @@ export default function Input(props: inputProps) {
 
   async function addAttendance(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    try {
-      const response = await fetch('https://lites-ams-api-main.vercel.app/attendance/add', {
-        method: 'POST',
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          student_id: addInputValue,
-          time_status: props.isTimeIn === true ? 1 : 0
+    if (addInputValue.length > 0) {
+      try {
+        const response = await fetch('https://lites-ams-api-main.vercel.app/attendance/add', {
+          method: 'POST',
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            student_id: addInputValue,
+            time_status: props.isTimeIn === true ? 1 : 0
+          })
         })
-      })
-      const data = await response.json();
-      console.log(data)
-      props.fetchData();
-
-    } catch (error) {
-      console.error(error)
+        const data = await response.json();
+        console.log(data)
+        props.fetchData();
+  
+      } catch (error) {
+        console.error(error)
+      }
+  
+      setAddInputValue("")
+    } else {
+      alert("Add Input Field is empty.")
     }
-
-    setAddInputValue("")
+    
   }
 
   async function searchStudent() {
+    if (searchInputValue.length > 0) {
 
+    } else {
+      alert("Search Input field is empty")
+    }
   }
 
 

@@ -142,9 +142,6 @@ export default function StudentList() {
   let rightArrowClassName = isTimeIn === true ? 'right-arrow' : 'right-arrow-active';
   let leftArrowClassName = isTimeIn === true ? 'left-arrow-active' : 'left-arrow';
 
-  console.log("rendered");
-  console.log(isTimeIn);
- 
 
   return (
     <>

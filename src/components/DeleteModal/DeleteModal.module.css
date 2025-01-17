@@ -9,6 +9,7 @@
 }
 
 .delete-modal { 
+  font-size: large;
   position: fixed;
   display: flex;
   flex-direction: column;
@@ -24,7 +25,6 @@
   transform: translate(-50%, -50%); 
   animation-name: loadModal; 
   animation-duration: 0.15s;
-  
 }
 
 @keyframes loadModal{

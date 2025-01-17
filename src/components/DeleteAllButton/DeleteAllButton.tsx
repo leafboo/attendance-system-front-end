@@ -47,12 +47,9 @@ export default function DeleteAllButton(props: DeleteAllButtonProps) {
   }
   
   function openDeleteConfirmation() {
-    if (isConfirmationModalOpen === false) {
-      setIsConfirmationModalOpen(true);
-      closeModal();
-    } else {
-      
-    }
+    setIsConfirmationModalOpen(true);
+    closeModal();
+    
   }
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
@@ -67,8 +64,12 @@ export default function DeleteAllButton(props: DeleteAllButtonProps) {
       {isDeleteModalOpen === true && isConfirmationModalOpen === false ? (
           <div id={DeleteAllButtonCSS['overlay']}>
           <div className={DeleteAllButtonCSS['delete-all-modal']}>
-              <div>Are you sure you want to remove</div>
-              <div>all records?</div>
+              <div className={DeleteAllButtonCSS['header']}>Are you sure?</div>
+              <br />
+              <br />
+              <div>This will delete all Time In </div>
+              <div>and Time out Records</div>
+              
               <div className={DeleteAllButtonCSS['buttons']}>
                 <button className={DeleteAllButtonCSS['no-button']} onClick={closeModal}>No</button>
                 <button className={DeleteAllButtonCSS['yes-button']} onClick={openDeleteConfirmation}>Yes</button>
@@ -78,12 +79,14 @@ export default function DeleteAllButton(props: DeleteAllButtonProps) {
         ) : isConfirmationModalOpen === true ? (
           <div id={DeleteAllButtonCSS['overlay']}>
           <div className={DeleteAllButtonCSS['delete-confirmation']}>
-              <div>Note: This cannot be undone</div>
+              <div className={DeleteAllButtonCSS['header']}>Note: This cannot be undone</div>
+              <br />
+              <br />
               <div>Type in "delete-all-records"</div>
               <input type="text" className={DeleteAllButtonCSS['input-box']} onInput={handleChange} />
               <div className={DeleteAllButtonCSS['buttons']}>
-                <button className={DeleteAllButtonCSS['no-button']} onClick={closeConfirmationModal}>Cancel</button>
-                <button className={DeleteAllButtonCSS['yes-button']} onClick={confirmDeletion}>Delete</button>
+                <button className={DeleteAllButtonCSS['no-button-confirmation']} onClick={closeConfirmationModal}>Cancel</button>
+                <button className={DeleteAllButtonCSS['yes-button-confirmation']} onClick={confirmDeletion}>Delete</button>
               </div>
             </div>
           </div>

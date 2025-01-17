@@ -26,7 +26,8 @@ export default function StudentData(props: StudentProps) {
 
 
   return (
-    <tr className={StudentDataCSS['student-data-row']}>
+    <>
+      <tr className={StudentDataCSS['student-data-row']}>
       <td>{props.idNumber}</td>
       <td className={StudentDataCSS['name-column']}>{props.name}</td>
       <td>{props.program}</td>
@@ -44,6 +45,8 @@ export default function StudentData(props: StudentProps) {
       
      
       
-    </tr>
+      </tr>
+    </>
+    
   )
 }

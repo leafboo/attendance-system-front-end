@@ -25,7 +25,13 @@
   z-index: 1000;
 }
 
+.header {
+  top: 2rem;
+  position: absolute;
+}
+
 .delete-all-modal, .delete-confirmation { 
+  font-size: large;
   position: fixed;
   display: flex;
   flex-direction: column;
@@ -56,16 +62,33 @@
 }
 
 
+.input-box {
+  margin-top: .5rem;
+  width: 20rem;
+  background-color: rgba(141, 88, 37, .16);
+  border: none;
+  color: #F1EDE9;
+  font-family: "JetBrains Mono";
+  font-size: larger;
+  padding: .5rem 1rem;
+  border-radius: 2px;
+  text-align: center;
+  margin-bottom: -.5rem;
+}
+.input-box:focus {
+  outline: none;
+}
+
 
 .buttons {
+  margin-top: 2rem;
   width: 60%;
   display: flex;
-  margin-top: 2rem;
   justify-content: space-between;
 }
 
-.no-button, .yes-button {
-  padding: .5rem 2rem;
+.no-button, .yes-button, .no-button-confirmation,
+.yes-button-confirmation {
   color: #F1EDE9;
   border: none;
   font-size: larger;
@@ -73,28 +96,23 @@
   transition: opacity 0.15s;
   font-family: "JetBrains Mono";
 }
-.no-button:hover, .yes-button:hover {
+.no-button-confirmation, .yes-button-confirmation {
+  padding: .5rem 1.4rem;
+}
+.no-button, .yes-button {
+  padding: .5rem 2.5rem;
+
+}
+.no-button:hover, .yes-button:hover,
+.no-button-confirmation:hover, 
+.yes-button-confirmation:hover {
   opacity: .5;
 }
 
-.no-button {
+.no-button, .no-button-confirmation {
   background-color: #699957;
 }
-.yes-button {
+.yes-button, .yes-button-confirmation {
   background-color: #CC241D;
 }
 
-.input-box {
-  margin-left: 2rem;
-  width: 15rem;
-  background-color: rgba(141, 88, 37, .16);
-  border: none;
-  color: #F1EDE9;
-  font-family: "JetBrains Mono";
-  font-size: 1.5rem;
-  padding: .5rem 1.4rem;
-  border-radius: 2px;
-}
-.input-box:focus {
-  outline: none;
-}
