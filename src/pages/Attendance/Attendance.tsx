@@ -1,5 +1,5 @@
-import Header from '../PageComponents/Header/Header';
-import StudentList from '../PageComponents/StudentList/StudentList';
+import Header from '../../components/Header/Header';
+import StudentList from '../../components/StudentList/StudentList';
 
 interface AttendanceProps {
   activeComponent: Number;

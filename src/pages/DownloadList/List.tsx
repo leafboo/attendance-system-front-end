@@ -1,4 +1,4 @@
-import Header from "../PageComponents/Header/Header"
+import Header from "../../components/Header/Header"
 
 interface AttendanceProps {
   activeComponent: Number;

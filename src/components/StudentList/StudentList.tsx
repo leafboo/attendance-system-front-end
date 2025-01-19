@@ -1,10 +1,10 @@
 import React from "react";
 import Input from "../Input/Input";
-import DeleteAllButton from "../../../components/DeleteAllButton/DeleteAllButton";
-import StudentData from "../../../StudentData/StudentData";
+import DeleteAllButton from "../DeleteAllButton/DeleteAllButton";
+import StudentData from "../StudentData/StudentData";
 import StudentListCSS from "./StudentList.module.css";
-import LeftArrowIcon from "../../../icons/left-arrow.png";
-import RightArrowIcon from "../../../icons/right-arrow.png";
+import LeftArrowIcon from "../../icons/left-arrow.png";
+import RightArrowIcon from "../../icons/right-arrow.png";
 
 
 

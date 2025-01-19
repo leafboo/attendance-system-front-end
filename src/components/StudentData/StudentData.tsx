@@ -1,7 +1,7 @@
 import StudentDataCSS from './StudentData.module.css';
-import deleteIcon from '../icons/delete-icon.png';
+import deleteIcon from '../../icons/delete-icon.png';
 import React from 'react';
-import DeleteModal from '../components/DeleteModal/DeleteModal';
+import DeleteModal from '../DeleteModal/DeleteModal';
 
 type StudentProps = {
   idNumber: string,
