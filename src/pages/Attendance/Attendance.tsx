@@ -2,7 +2,7 @@ import Header from '../../components/Header/Header';
 import StudentList from '../../components/StudentList/StudentList';
 
 interface AttendanceProps {
-  activeComponent: Number;
+  activeComponent: number;
   setActiveComponent: React.Dispatch<React.SetStateAction<number>>;
 }
 
@@ -11,7 +11,7 @@ export default function Attendance(props: AttendanceProps) {
     <>
       <Header activeComponent={props.activeComponent}
               setActiveComponent={props.setActiveComponent} />
-      <StudentList />
+      <StudentList activeComponent={props.activeComponent} />
     </>
   )
 }

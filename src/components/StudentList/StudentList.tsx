@@ -6,6 +6,9 @@ import StudentListCSS from "./StudentList.module.css";
 import LeftArrowIcon from "../../icons/left-arrow.png";
 import RightArrowIcon from "../../icons/right-arrow.png";
 
+type StudentListProps = {
+  activeComponent: number
+};
 
 
 // These two are the types for the raw data from the api
@@ -42,7 +45,7 @@ type timeOutStudentData = {
 
 
 
-export default function StudentList() {  
+export default function StudentList(props: StudentListProps) {  
   // type UseState<S> = (action: S | ((prevState: S) => S)) => void; this is the type of useState
   const [isTimeIn, setIsTimeIn] = React.useState(true); 
   const [timeInStudentData, setTimeInStudentData] = React.useState<timeInStudentData[]>() // timed in students
@@ -147,8 +150,9 @@ export default function StudentList() {
     <>
       <span className={StudentListCSS['body-container']}>
         <div className={StudentListCSS['body']}>
-          <Input fetchData={fetchData} 
-                 isTimeIn={isTimeIn} />
+          {props.activeComponent === 1 ? <Input fetchData={fetchData} 
+                 isTimeIn={isTimeIn} /> : ("")}
+          
           <span className={StudentListCSS['table-container']}>
             <table className={StudentListCSS['table']}>
               <thead>
@@ -172,7 +176,7 @@ export default function StudentList() {
               <img src={RightArrowIcon} alt="right arrow" className={StudentListCSS[rightArrowClassName]} onClick={() => {isTimeIn === true ? setIsTimeIn(false) : ''}} />
             </div>
             <div className={StudentListCSS['delete-all-button']}>
-              <DeleteAllButton fetchData={fetchData} />
+              {props.activeComponent === 1 ? <DeleteAllButton fetchData={fetchData} /> : ("")}
             </div>
             
           </div>

@@ -1,7 +1,7 @@
 import React from "react"
 import Login from "./pages/Login/Login"
 import Attendance from "./pages/Attendance/Attendance"
-import List from "./pages/DownloadList/List"
+import DownloadList from "./pages/DownloadList/DownloadList"
 
 
 export default function App() {
@@ -15,7 +15,7 @@ export default function App() {
           <Attendance activeComponent={activeComponent} 
                       setActiveComponent={setActiveComponent} />
         ) : activeComponent == 2 ? (
-          <List activeComponent={activeComponent}
+          <DownloadList activeComponent={activeComponent}
                 setActiveComponent={setActiveComponent} />
         ) : ("")
       }
