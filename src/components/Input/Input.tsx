@@ -5,7 +5,8 @@ import React, {ChangeEvent} from 'react'
 
 type inputProps = {
   fetchData: () => void,
-  isTimeIn: boolean
+  isTimeIn: boolean,
+  activeComponent: number
   //setIsTimeIn: Dispatch<SetStateAction<boolean>>   //it's basically saying "setIsTimeIn: type of useState (refer to parent component)"
 };
 
@@ -65,22 +66,36 @@ export default function Input(props: inputProps) {
   }
 
 
+  const attendanceInput =  (
+  <div className={InputCSS['input-container-attendance']}>
+
+    <form onSubmit={searchStudent}>
+
+      <input type="submit" value='Search' className={InputCSS['search-button']} />
+      <input type="text" value={searchInputValue} placeholder='Id Number' className={InputCSS['input-box']} onInput={handleChangeOnSearch} />
+    </form>
+
+    <form onSubmit={addAttendance} >
+      <input type="submit" value='Add' className={InputCSS['add-button']} />
+      <input type="text" value={addInputValue} placeholder='Id Number' className={InputCSS['input-box']} onInput={handleChangeOnAdd} />
+    </form>
+
+  </div>)
+
+  const downloadInput = (
+    <div className={InputCSS['input-container-download']}>
+      <form method="get" action="/excelFile/attendance.xlsx">
+        <button type="submit" className={InputCSS['download-button']}>Download Excel</button>
+      </form>
+    </div>
+  )
+
+
+
   return (
     <>
-      <div className={InputCSS['input-container']}>
-
-        <form onSubmit={searchStudent}>
-          <input type="submit" value='Search' className={InputCSS['search-button']} />
-          <input type="text" value={searchInputValue} placeholder='Id Number' className={InputCSS['input-box']} onInput={handleChangeOnSearch} />
-        </form>
-
-        <form onSubmit={addAttendance} >
-          <input type="submit" value='Add' className={InputCSS['add-button']} />
-          <input type="text" value={addInputValue} placeholder='Id Number' className={InputCSS['input-box']} onInput={handleChangeOnAdd} />
-        </form>
-
-      </div>
-
+     
+      {props.activeComponent === 1 ? attendanceInput : downloadInput}
     </>
   )
 }

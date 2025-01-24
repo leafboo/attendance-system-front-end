@@ -150,8 +150,9 @@ export default function StudentList(props: StudentListProps) {
     <>
       <span className={StudentListCSS['body-container']}>
         <div className={StudentListCSS['body']}>
-          {props.activeComponent === 1 ? <Input fetchData={fetchData} 
-                 isTimeIn={isTimeIn} /> : ("")}
+           <Input fetchData={fetchData} 
+                  isTimeIn={isTimeIn}
+                  activeComponent={props.activeComponent} /> 
           
           <span className={StudentListCSS['table-container']}>
             <table className={StudentListCSS['table']}>

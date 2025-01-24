@@ -16,7 +16,7 @@ export default function App() {
                       setActiveComponent={setActiveComponent} />
         ) : activeComponent == 2 ? (
           <DownloadList activeComponent={activeComponent}
-                setActiveComponent={setActiveComponent} />
+                        setActiveComponent={setActiveComponent} />
         ) : ("")
       }
     </>
