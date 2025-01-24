@@ -39,6 +39,37 @@ export default function Input(props: inputProps) {
     
   }
 
+  async function getDownloadableExcelFile(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    try {
+      const response = await fetch('https://lites-ams-api-main.vercel.app/attendance/export', {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          "file_name": "attendance.xlsx" // placeholder file name
+        }),
+      })
+      // blob is basically json but different structure and for files coming from the server, in this case, an excel file
+      // blobs are the data of the files I think
+      const data = await response.blob();
+      const url = window.URL.createObjectURL(data);
+      // starting from here, idk what these does
+      const a = document.createElement('a');
+      a.style.display = 'none';
+      a.href = url;
+      a.download = 'attendance';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+     
+    } catch(error) {
+      console.error(error)
+    }
+    
+  }
+
+
   async function searchStudent() {
     if (searchInputValue.length > 0) {
 
@@ -84,17 +115,18 @@ export default function Input(props: inputProps) {
 
   const downloadInput = (
     <div className={InputCSS['input-container-download']}>
-      <form method="get" action="/excelFile/attendance.xlsx">
-        <button type="submit" className={InputCSS['download-button']}>Download Excel</button>
+      <form onSubmit={getDownloadableExcelFile}>
+        <button type="submit" className={InputCSS['download-button']} >Download Excel</button>
       </form>
     </div>
   )
+
+ 
 
 
 
   return (
     <>
-     
       {props.activeComponent === 1 ? attendanceInput : downloadInput}
     </>
   )

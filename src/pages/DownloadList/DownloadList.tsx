@@ -1,6 +1,6 @@
 import Header from "../../components/Header/Header";
 import StudentList from "../../components/StudentList/StudentList";
-
+import React from "react";
 
 
 interface AttendanceProps {
@@ -11,7 +11,6 @@ interface AttendanceProps {
 export default function List(props: AttendanceProps) {
   return (
     <>
-    
       <Header activeComponent={props.activeComponent}
               setActiveComponent={props.setActiveComponent} />
       <StudentList activeComponent={props.activeComponent} />
