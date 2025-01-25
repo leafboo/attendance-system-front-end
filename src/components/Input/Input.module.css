@@ -45,3 +45,9 @@
 .input-box:focus {
   outline: none;
 }
+
+@media (max-height: 780px) {
+  .search-button, .add-button, .download-button, .input-box {
+    font-size: 1.3rem;
+  }
+}

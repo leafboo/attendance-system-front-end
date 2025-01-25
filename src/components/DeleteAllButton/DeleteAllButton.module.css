@@ -116,3 +116,9 @@
   background-color: #CC241D;
 }
 
+
+@media (max-height: 780px) {
+  .delete-all-button {
+    font-size: 1.3rem;
+  }
+}

@@ -10,6 +10,7 @@
 }
 
 
+
 /* table */
 .table-container {
   margin-top: 2rem;
@@ -17,6 +18,7 @@
   justify-content: center;
   overflow-y: scroll;
   max-height: 27rem; 
+  stroke-width: none;
 }
 
 .table {
@@ -24,6 +26,7 @@
   width: 50rem;
   border: none;
   border-spacing: 0rem 1rem;
+ 
 }
 
 .table th {
@@ -34,18 +37,19 @@
 
 
 .table td, .table th {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
   text-align: center;
   padding-left: 2rem;
 }
 .table td {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   white-space: nowrap;
 }
 
 
 
 .column-names {
+  padding-top: 0;
   font-size: 1.5rem;
   background-color: #0E0A07;
   font-weight: normal;
@@ -88,3 +92,28 @@
 }
 
 
+
+@media (max-height: 780px) { /* Only apply styles when screen height is below 780px */
+  .body-container {
+    margin-top: 0;
+    
+  }
+  .table-container {
+    margin-top: 1rem;
+    max-height: 21rem;
+  }
+  .column-names {
+    font-size: 1.3rem;
+  }
+  .table td {
+    padding-top: .8rem;
+    padding-bottom: .8rem;
+  }
+  .footer {
+    margin-top: 1rem;
+  }
+  .left-arrow, .left-arrow-active, .right-arrow, .right-arrow-active {
+    height: 2.5rem;
+  }
+ 
+}
