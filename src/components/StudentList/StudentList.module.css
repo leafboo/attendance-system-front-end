@@ -91,6 +91,12 @@
   right: 0;
 }
 
+.loading-animation {
+  margin-top: 8rem;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 9rem;
+}
 
 
 @media (max-height: 780px) { /* Only apply styles when screen height is below 780px */

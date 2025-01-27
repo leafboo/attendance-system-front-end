@@ -5,6 +5,9 @@ import StudentData from "../StudentData/StudentData";
 import StudentListCSS from "./StudentList.module.css";
 import LeftArrowIcon from "../../icons/left-arrow.png";
 import RightArrowIcon from "../../icons/right-arrow.png";
+import { lineSpinner } from "ldrs";
+
+lineSpinner.register();
 
 type StudentListProps = {
   activeComponent: number
@@ -50,6 +53,7 @@ export default function StudentList(props: StudentListProps) {
   const [isTimeIn, setIsTimeIn] = React.useState(true); 
   const [timeInStudentData, setTimeInStudentData] = React.useState<timeInStudentData[]>() // timed in students
   const [timeOutStudentData, setTimeOutStudentData] = React.useState<timeOutStudentData[]>() // timed out students
+  const [isLoading, setIsLoading] = React.useState(true);
 
   
   React.useEffect(()=>{
@@ -120,6 +124,7 @@ export default function StudentList(props: StudentListProps) {
     }))
     setTimeOutStudentData(timeOutFilteredData);
     
+    setIsLoading(false);
   }
 
 
@@ -153,8 +158,16 @@ export default function StudentList(props: StudentListProps) {
            <Input fetchData={fetchData} 
                   isTimeIn={isTimeIn}
                   activeComponent={props.activeComponent} /> 
-          
-          <span className={StudentListCSS['table-container']}>
+          {isLoading === true ? 
+          ( <div className={StudentListCSS['loading-animation']}>
+              <l-line-spinner
+                size="40"
+                stroke="3"
+                speed="1" 
+                color="#DCBD9E"  ></l-line-spinner>
+            </div>) : 
+          (
+            <span className={StudentListCSS['table-container']}>
             <table className={StudentListCSS['table']}>
               <thead>
                 <tr className={StudentListCSS['column-names']}>
@@ -169,8 +182,10 @@ export default function StudentList(props: StudentListProps) {
                 {isTimeIn === true ? timeInElement : timeOutElement}
               </tbody>
 
-          </table>
-          </span>
+            </table>
+            </span>
+          )}
+          
           <div className={StudentListCSS['footer']}>
             <div className={StudentListCSS['arrows']}>
               <img src={LeftArrowIcon} alt="left arrow" className={StudentListCSS[leftArrowClassName]} onClick={() => {isTimeIn === false ? setIsTimeIn(true) : ''}} />
