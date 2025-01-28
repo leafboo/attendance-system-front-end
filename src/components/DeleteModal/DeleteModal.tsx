@@ -1,3 +1,4 @@
+import attendanceApi from '../../api';
 import DeleteModalCSS from './DeleteModal.module.css';
 import { Dispatch, SetStateAction } from 'react';
 
@@ -19,17 +20,7 @@ export default function DeleteModal(props: DeleteModalProps) {
   }
 
   async function deleteAttendance() {
-    try {
-      const response = await fetch(`https://lites-ams-api-main.vercel.app/attendance/delete?student_id=${props.idNumber}&time_status=${props.isTimeIn ? 1 : 0}`,{
-        method: 'DELETE'
-      });
-      const data = await response.json();
-      console.log(data)
-      props.fetchData();
-
-    } catch(error) {
-      console.error(error);
-    }
+    attendanceApi.delete(props.idNumber, props.isTimeIn, props.fetchData);
   }
 
   return (

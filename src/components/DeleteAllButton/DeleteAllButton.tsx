@@ -1,5 +1,6 @@
 import React, {ChangeEvent} from 'react';
 import DeleteAllButtonCSS from './DeleteAllButton.module.css';
+import attendanceApi from '../../api';
 
 type DeleteAllButtonProps = {
   fetchData: () => void
@@ -14,19 +15,7 @@ export default function DeleteAllButton(props: DeleteAllButtonProps) {
   const deleteConfirmationCode = "delete-all-records"
 
   async function deleteAllStudents() {
-    const endpoint = "https://lites-ams-api-main.vercel.app/attendance/clear";
-
-    try {
-      const response = await fetch(endpoint, {
-        method: 'DELETE'
-      });
-      const data = await response.json();
-      console.log(data);
-      props.fetchData();
-    } catch(error) {
-      console.error(error);
-    }
-
+    attendanceApi.deleteAll(props.fetchData);
     closeConfirmationModal();
   }
 

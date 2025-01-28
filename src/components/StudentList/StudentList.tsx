@@ -6,6 +6,7 @@ import StudentListCSS from "./StudentList.module.css";
 import LeftArrowIcon from "../../icons/left-arrow.png";
 import RightArrowIcon from "../../icons/right-arrow.png";
 import { lineSpinner } from "ldrs";
+import attendanceApi from "../../api";
 
 lineSpinner.register();
 
@@ -62,29 +63,18 @@ export default function StudentList(props: StudentListProps) {
 
   async function fetchData() {
       
-    const [attendanceResponse, studentResponse] = await Promise.allSettled([
-      fetch("https://lites-ams-api-main.vercel.app/attendance/get"),
-      fetch("https://lites-ams-api-main.vercel.app/student/get")
-    ]);
+    
 
     let attendanceData: RawAttendanceData[] = [];
     let studentData: RawStudentData[] = [];
+
+    [attendanceData, studentData] = await attendanceApi.fetchData();
 
     // Promise.allSettled method returns an object that has {status: , value: } if status is 'fulfilled'. 
     // Status can either be 'fulfilled' or 'rejected'
     // When the status is 'rejected', the object becomes  {status: , reason: }
 
-    if (attendanceResponse.status == "fulfilled") {
-      attendanceData = await attendanceResponse.value.json();
-    } else {
-      console.error(attendanceResponse.reason);
-    }
-
-    if (studentResponse.status == "fulfilled") {
-      studentData = await studentResponse.value.json();
-    } else {
-      console.error(studentResponse.reason);
-    }
+    
 
     const formatter = new Intl.DateTimeFormat('en-PH', {hour: 'numeric', minute: 'numeric'});
     

@@ -1,3 +1,4 @@
+import attendanceApi from '../../api';
 import InputCSS from './Input.module.css'
 import React, {ChangeEvent} from 'react'
 //import { Dispatch, SetStateAction } from "react";
@@ -15,57 +16,19 @@ export default function Input(props: inputProps) {
   async function addAttendance(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
     if (addInputValue.length > 0) {
-      try {
-        const response = await fetch('https://lites-ams-api-main.vercel.app/attendance/add', {
-          method: 'POST',
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            student_id: addInputValue,
-            time_status: props.isTimeIn === true ? 1 : 0
-          })
-        })
-        const data = await response.json();
-        console.log(data)
-        props.fetchData();
-  
-      } catch (error) {
-        console.error(error)
-      }
-  
+      attendanceApi.addAttendance(addInputValue, props.isTimeIn, props.fetchData)
+      
       setAddInputValue("")
     } else {
       alert("Add Input Field is empty.")
     }
     
   }
+ 
 
   async function getDownloadableExcelFile(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    try {
-      const response = await fetch('https://lites-ams-api-main.vercel.app/attendance/export', {
-        method: 'POST',
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          "file_name": "attendance.xlsx" // placeholder file name
-        }),
-      })
-      // blob is basically json but different structure and for files coming from the server, in this case, an excel file
-      // blobs are the data of the files I think
-      const data = await response.blob();
-      const url = window.URL.createObjectURL(data);
-      // starting from here, idk what these does
-      const a = document.createElement('a');
-      a.style.display = 'none';
-      a.href = url;
-      a.download = 'attendance';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      window.URL.revokeObjectURL(url);
-     
-    } catch(error) {
-      console.error(error)
-    }
+    attendanceApi.getDownloadableExcelFile();
     
   }
 
