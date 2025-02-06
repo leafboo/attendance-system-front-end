@@ -62,27 +62,19 @@ export default function StudentList(props: StudentListProps) {
   }, []) 
 
   async function fetchData() {
-      
-    
+    let attendanceData: RawAttendanceData[] = []; // this holds the data from the attendance endpoint
+    let studentData: RawStudentData[] = []; // this holds the data from the student endpoint
 
-    let attendanceData: RawAttendanceData[] = [];
-    let studentData: RawStudentData[] = [];
-
+    // get the data from the api
     [attendanceData, studentData] = await attendanceApi.fetchData();
-
-    // Promise.allSettled method returns an object that has {status: , value: } if status is 'fulfilled'. 
-    // Status can either be 'fulfilled' or 'rejected'
-    // When the status is 'rejected', the object becomes  {status: , reason: }
-
     
 
-    const formatter = new Intl.DateTimeFormat('en-PH', {hour: 'numeric', minute: 'numeric'});
     
     const timeInStudentIdAndTime: [string, string][] = attendanceData.filter(student => student.time_status == 1).map(student => ([
-      student.student_id, formatter.format(new Date(student.date_time))
+      student.student_id, student.date_time
     ]));
     const timeOutStudentIdAndTime: [string, string][] = attendanceData.filter(student => student.time_status == 0).map(student => ([
-      student.student_id, formatter.format(new Date(student.date_time))
+      student.student_id, student.date_time
     ]));
 
     
@@ -100,19 +92,37 @@ export default function StudentList(props: StudentListProps) {
       Program: student.program,
       TimeIn: timeInIdDateTime.get(student.student_id) || "Error on API"
     }))
-    if (timeInStudentData != timeInFilteredData) {
-      setTimeInStudentData(timeInFilteredData);
-    }
-   
-    
-    
     const timeOutFilteredData = studentData.filter(student => timeOutIdDateTime.has(student.student_id)).map(student => ({
       IdNumber: student.student_id,
       Name: student.fName,
       Program: student.program,
       TimeOut: timeOutIdDateTime.get(student.student_id) || "Error on API"
     }))
-    setTimeOutStudentData(timeOutFilteredData);
+
+
+    
+    // Do this so that when you add an attendance, the latest one that has been added will appear on top
+    timeInFilteredData.sort((a,b) => new Date(a.TimeIn).valueOf() - new Date(b.TimeIn).valueOf()).reverse()
+    timeOutFilteredData.sort((a,b) => new Date(a.TimeOut).valueOf() - new Date(b.TimeOut).valueOf()).reverse()
+    
+    
+
+    // TimeIn and TimeOut key's value above is in ISO format so change the format here to AM/PM
+    const formatter = new Intl.DateTimeFormat('en-PH', {hour: 'numeric', minute: 'numeric'});
+    const sortedTimeInData = timeInFilteredData.map(student => {return {...student, TimeIn: student.TimeIn=formatter.format(new Date(student.TimeIn))}})
+    const sortedTimeOutData = timeOutFilteredData.map(student => {return {...student, TimeOut: student.TimeOut=formatter.format(new Date(student.TimeOut))}})
+    
+
+
+    // Update the state only if there are changes in the data
+    // USE LODASH HERE !!!
+
+      setTimeInStudentData(sortedTimeInData);
+    
+  
+      setTimeOutStudentData(sortedTimeOutData);
+    
+    
     
     setIsLoading(false);
   }
