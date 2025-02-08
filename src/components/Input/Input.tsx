@@ -15,12 +15,12 @@ export default function Input(props: inputProps) {
 
   async function addAttendance(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    if (addInputValue.length > 0) {
-      attendanceApi.addAttendance(addInputValue, props.isTimeIn, props.fetchData)
-      
-      setAddInputValue("")
-    } else {
+    if (addInputValue.length === 0) {
       alert("Add Input Field is empty.")
+      
+    } else {
+      attendanceApi.addAttendance(addInputValue, props.isTimeIn, props.fetchData)
+      setAddInputValue("")
     }
     
   }

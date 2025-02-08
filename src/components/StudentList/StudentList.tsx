@@ -62,6 +62,7 @@ export default function StudentList(props: StudentListProps) {
   }, []) 
 
   async function fetchData() {
+    setIsLoading(true);
     let attendanceData: RawAttendanceData[] = []; // this holds the data from the attendance endpoint
     let studentData: RawStudentData[] = []; // this holds the data from the student endpoint
 
