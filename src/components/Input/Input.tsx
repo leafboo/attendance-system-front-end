@@ -63,11 +63,11 @@ export default function Input(props: inputProps) {
   const attendanceInput =  (
   <div className={InputCSS['input-container-attendance']}>
 
-    <form onSubmit={searchStudent}>
+    {/*<form onSubmit={searchStudent}>
 
       <input type="submit" value='Search' className={InputCSS['search-button']} />
       <input type="text" value={searchInputValue} placeholder='Id Number' className={InputCSS['input-box']} onInput={handleChangeOnSearch} />
-    </form>
+    </form>*/}
 
     <form onSubmit={addAttendance} >
       <input type="submit" value='Add' className={InputCSS['add-button']} />
