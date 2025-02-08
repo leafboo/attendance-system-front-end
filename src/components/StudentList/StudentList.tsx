@@ -89,13 +89,13 @@ export default function StudentList(props: StudentListProps) {
     const timeInFilteredData = studentData.filter(student => timeInIdDateTime.has(student.student_id)).map(student => ({
       IdNumber: student.student_id,
       Name: student.fName,
-      Program: student.program,
+      Program: `${student.program}-${student.year}`,
       TimeIn: timeInIdDateTime.get(student.student_id) || "Error on API"
     }))
     const timeOutFilteredData = studentData.filter(student => timeOutIdDateTime.has(student.student_id)).map(student => ({
       IdNumber: student.student_id,
       Name: student.fName,
-      Program: student.program,
+      Program: `${student.program}-${student.year}`,
       TimeOut: timeOutIdDateTime.get(student.student_id) || "Error on API"
     }))
 
