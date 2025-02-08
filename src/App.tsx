@@ -5,7 +5,7 @@ import DownloadList from "./pages/DownloadList/DownloadList"
 
 
 export default function App() {
-  const [activeComponent, setActiveComponent] = React.useState(0)
+  const [activeComponent, setActiveComponent] = React.useState(1)
 
   return (
     <>
