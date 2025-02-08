@@ -33,25 +33,25 @@ export default function Input(props: inputProps) {
   }
 
 
-  async function searchStudent() {
+  /*async function searchStudent() {
     if (searchInputValue.length > 0) {
 
     } else {
       alert("Search Input field is empty")
     }
-  }
+  }*/
 
 
   const [searchInputValue, setSearchInputValue] = React.useState<string>("")
   const [addInputValue, setAddInputValue] = React.useState<string>("")
 
-  const handleChangeOnSearch = (event: ChangeEvent<HTMLInputElement>) => {
+  /*const handleChangeOnSearch = (event: ChangeEvent<HTMLInputElement>) => {
     if (addInputValue.length !== 0) {
       setAddInputValue("");
     }
    
     setSearchInputValue(event.target.value);
-  }
+  }*/
   const handleChangeOnAdd = (event: ChangeEvent<HTMLInputElement>) => {
     if (searchInputValue.length !== 0) {
       setSearchInputValue("");
