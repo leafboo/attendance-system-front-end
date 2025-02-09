@@ -17,7 +17,9 @@ export default function Header(props: AttendanceProps) {
                   onClick={() => {props.setActiveComponent(1)}} >Attendance</span>
             <span className={props.activeComponent === 2 ? HeaderCSS['active-page'] : HeaderCSS['download-list']}
                   onClick={() => {props.setActiveComponent(2)}} >Download List</span>
+            <span className={HeaderCSS['student-counter']}>student counter: 0</span>
           </div>
+         
 
           
         </div>

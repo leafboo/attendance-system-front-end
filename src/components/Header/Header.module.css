@@ -4,6 +4,7 @@
 }
 
 .header {
+  position: relative;
   display: flex;
   width: 70rem;
   justify-content: left;
@@ -19,6 +20,7 @@
     padding-bottom: 1rem;
   }
 }
+
 
 
 .pages > span {
@@ -37,6 +39,14 @@
 
 .active-page {
   opacity: 1;
+}
+
+.student-counter {
+  position: absolute;
+  right: 0;
+  width: 15rem;
+  font-size: .9rem !important;
+  color: #d68b40;
 }
 
 @media (max-height: 780px) {
