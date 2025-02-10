@@ -1,13 +1,8 @@
 import React from 'react';
 import HeaderCSS from './Header.module.css'
-import attendanceApi from '../../api';
 
-type RawAttendanceData = {
-  id: number,
-  time_status: number,
-  date_time: string,
-  student_id: string
-}
+
+
 
 interface AttendanceProps {
   activeComponent: Number;

@@ -2,7 +2,7 @@ import React from "react"
 import Login from "./pages/Login/Login"
 import Attendance from "./pages/Attendance/Attendance"
 import DownloadList from "./pages/DownloadList/DownloadList"
-import attendanceApi from "./api"
+
 
 type RawAttendanceData = {
   id: number,
