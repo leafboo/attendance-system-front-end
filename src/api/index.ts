@@ -1,25 +1,26 @@
 const attendanceApi = {
   // Note: async functionName is only used in objects or classes. It is the shorthand for async function functionName 
-  async fetchData() {
-    const [attendanceResponse, studentResponse] = await Promise.allSettled([
-      fetch("https://lites-ams-api-main.vercel.app/attendance/get"),
-      fetch("https://lites-ams-api-main.vercel.app/student/get")
-    ]);
+ 
+  async fetchStudent() {
+    try {
+      const response = await fetch('https://lites-ams-api-main.vercel.app/student/get')
+      const data = await response.json();
 
-    let attendanceData, studentData
-
-    if (attendanceResponse.status == "fulfilled") {
-      attendanceData = await attendanceResponse.value.json();
-    } else {
-      console.error(attendanceResponse.reason);
+      return data;
+    } catch (error) {
+      console.error(error)
     }
+  },
 
-    if (studentResponse.status == "fulfilled") {
-      studentData = await studentResponse.value.json();
-    } else {
-      console.error(studentResponse.reason);
+  async fetchAttendance() {
+    try {
+      const response = await fetch('https://lites-ams-api-main.vercel.app/attendance/get')
+      const data = await response.json();
+
+      return data;
+    } catch (error) {
+      console.error(error)
     }
-    return [attendanceData, studentData]
   },
 
   async addAttendance(addInputValue: string, isTimeIn: boolean, fetchData:() => void) {

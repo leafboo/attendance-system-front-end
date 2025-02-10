@@ -12,6 +12,7 @@ lineSpinner.register();
 
 type StudentListProps = {
   activeComponent: number
+  setTheNumberOfStudents: (attendanceData: RawAttendanceData[]) => void
 };
 
 
@@ -67,7 +68,12 @@ export default function StudentList(props: StudentListProps) {
     let studentData: RawStudentData[] = []; // this holds the data from the student endpoint
 
     // get the data from the api
-    [attendanceData, studentData] = await attendanceApi.fetchData();
+    studentData = await attendanceApi.fetchStudent();
+    attendanceData = await attendanceApi.fetchAttendance(); 
+
+    // get the length of the attenndance data to be passed to student counter
+    props.setTheNumberOfStudents(attendanceData);
+   
     
 
     

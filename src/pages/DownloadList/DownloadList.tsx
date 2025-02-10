@@ -2,18 +2,28 @@ import Header from "../../components/Header/Header";
 import StudentList from "../../components/StudentList/StudentList";
 import React from "react";
 
+type RawAttendanceData = {
+  id: number,
+  time_status: number,
+  date_time: string,
+  student_id: string
+}
 
-interface AttendanceProps {
-  activeComponent: number;
-  setActiveComponent: React.Dispatch<React.SetStateAction<number>>;
+type AttendanceProps = {
+  activeComponent: number,
+  setActiveComponent: React.Dispatch<React.SetStateAction<number>>,
+  numberOfStudents: number
+  setTheNumberOfStudents: (attendanceData: RawAttendanceData[]) => void
 }
 
 export default function List(props: AttendanceProps) {
   return (
     <>
       <Header activeComponent={props.activeComponent}
-              setActiveComponent={props.setActiveComponent} />
-      <StudentList activeComponent={props.activeComponent} />
+              setActiveComponent={props.setActiveComponent}
+              numberOfStudents={props.numberOfStudents} />
+      <StudentList activeComponent={props.activeComponent}
+                   setTheNumberOfStudents={props.setTheNumberOfStudents} />
     </>
   )
 }
