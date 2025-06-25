@@ -14,7 +14,9 @@ export default function Header(props: AttendanceProps) {
   
 
   const studentCounter = (
-    <span className={HeaderCSS['student-counter']}>student counter: {props.numberOfStudents}</span>
+    <span className={HeaderCSS['student-counter']}>
+      {props.numberOfStudents ? `student counter: ${props.numberOfStudents}` : 'student counter: 0'}
+    </span>
   )
 
   

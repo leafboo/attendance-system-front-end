@@ -22,7 +22,6 @@ export default function App() {
   async function setTheNumberOfStudents(attendanceData: RawAttendanceData[]) {
     setNumberOfStudents(attendanceData.length)
   }
-  console.log(numberOfStudents)
 
   return (
     <>

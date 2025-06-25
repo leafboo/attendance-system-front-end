@@ -96,6 +96,14 @@
   display: flex;
   justify-content: center;
   margin-bottom: 9rem;
+  position: relative;
+}
+
+.note {
+  top: -4rem;
+  position: absolute;
+  color: #DCBD9E;
+  opacity: .8;
 }
 
 

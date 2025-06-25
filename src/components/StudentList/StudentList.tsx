@@ -171,7 +171,10 @@ export default function StudentList(props: StudentListProps) {
                 size="40"
                 stroke="3"
                 speed="1" 
-                color="#DCBD9E"  ></l-line-spinner>
+                color="#DCBD9E"  >
+
+              </l-line-spinner><br />
+              <div className={StudentListCSS['note']}>Note: If the loading persists, the server is most likely down</div>
             </div>) : 
           (
             <span className={StudentListCSS['table-container']}>

@@ -44,7 +44,6 @@ export default function DeleteAllButton(props: DeleteAllButtonProps) {
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     setInputValue(event.target.value);
   }
-  console.log(inputValue);
 
 
   return (
